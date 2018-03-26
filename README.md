@@ -78,7 +78,7 @@ More explanations of what is attempted into each file:
 - **_views.py_** : all routes which are described into the API file
 - **_controller.py_** : all interactions between your views and your models
 
-We will add our **_config.py_* file.
+We will add our **_config.py_** file.
 
 All settings for your program (debug mode, database configuration, etc.) will be there!
 Here are the required ones :
@@ -103,7 +103,7 @@ This graphical part will be evaluated during your presentation.
 
 Here is a minimal list of what you can do as a bonus:
 - add a responsive design
-- develop more functionnalities than expected:
+- develop more functionalities than expected:
   - Ajax requests
   - dynamic components (drag & drop cards, datepickers, etc.)
   - contacts system (adding friends, authorizations handling, etc.)
