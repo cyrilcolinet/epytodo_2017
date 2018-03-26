@@ -11,9 +11,9 @@ EPyTodo is a project which you could rely on in the future.
 Thanks to it, you’ll handle all tasks which you need to do easily!
 
 Into this project, you’ll have to develop:
-1. your MySQL database scheme
-2. your web server using Flask
-3. your HTML pages using Jinja2 (integrated with Flask)
+- your MySQL database scheme
+- your web server using Flask
+- your HTML pages using Jinja2 (integrated with Flask)
 
 ## MySQL Database
 
