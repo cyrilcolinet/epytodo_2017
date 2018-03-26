@@ -7,6 +7,7 @@
 ## run file
 ##
 
+from app import views
 from app import app
 
 app.run()
