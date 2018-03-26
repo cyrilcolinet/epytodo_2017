@@ -7,7 +7,7 @@
 
 # Subject
 
-EPyTodo is a project which you could rely on in the future.
+EPyTodo is a project which you could rely on in the future.<br />
 Thanks to it, you’ll handle all tasks which you need to do easily!
 
 Into this project, you’ll have to develop:
@@ -21,9 +21,9 @@ Into your database, you’ll need to handle many users with their tasks.
 
 > :exclamation: All instructions have to be **strictly** followed
 
-Create a file named **epytodo.sql**.
-You will write into it all your database scheme.
-The database name is **epytodo**.
+Create a file named **epytodo.sql**.<br />
+You will write into it all your database scheme.<br />
+The database name is **epytodo**.<br />
 Its tables are named :
 - user
 - task
@@ -67,9 +67,9 @@ Files to turn in (refer to the bootstrap to know where placing them into your fo
 - **views.py**
 - **controller.py**
 
-You server will implement a MVC architecture.
-There’s not only ONE way to implement it but it’s **mandatory** to do so.
-Look closely at schemes you can find. Here’s a [TIP].
+You server will implement a MVC architecture.<br />
+There’s not only ONE way to implement it but it’s **mandatory** to do so.<br />
+Look closely at schemes you can find. Here’s a [TIP].<br />
 
 More explanations of what is attempted into each file:
 - **_run.py_** : your entry program
@@ -92,8 +92,8 @@ Be sure that your **_config.py_** is similar and used effectively.
 
 ## HTML pages
 
-All data will transit into JSON format (see API file).
-You are free to display all information as you want (plain text, lists, accordion, etc.).
+All data will transit into JSON format (see API file).<br />
+You are free to display all information as you want (plain text, lists, accordion, etc.).<br />
 This graphical part will be evaluated during your presentation.
 
 # Bonus
