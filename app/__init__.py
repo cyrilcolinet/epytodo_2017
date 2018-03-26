@@ -6,9 +6,10 @@
 ##
 
 from flask import Flask, render_template, request
-import pymysql
+import pymysql as sql
+import Config
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object('Config')
 
-connection = pymysql.connect(host = "127.0.0.1", user = "root", password = "")
+connection = sql.connect(host=DATABASE_HOST, user=DATABASE_USER, password=DATABASE_PASS)
