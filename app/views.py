@@ -5,14 +5,14 @@
 ## vienws file
 ##
 
-from app import app
+from app import *
 
 ## Index page
 @app.route('/', methods = ['GET'])
 @app.route('/index', methods = ['GET'])
 
 def route_home():
-	return "Hello world !\n"
+	return render_template('index.html')
 
 ## User pages
 @app.route('/user/<username>', methods = ['POST'])
