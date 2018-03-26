@@ -25,27 +25,27 @@ Create a file named **epytodo.sql**.
 You will write into it all your database scheme.
 The database name is **epytodo**.
 Its tables are named :
-1. user
-2. task
-3. user_has_task
+- user
+- task
+- user_has_task
 
 > :bulb: Think about the last one : why do you need this ?
 > Maybe it has to do with relationship...
 
 Here are all fields (with types or values) which you must have into your tables:
-1. user table
+- user table
   - _user_id_ (mandatory not null)
   - _username_ (mandatory not null)
   - _password_ (mandatory not null)
   - etc.
-2. task table
+- task table
   - _task_id_ (mandatory not null)
   - _title_ (mandatory not null)
   - _begin_ (optional value when creating a task, actual date by default)
   - _end_ (optional value when creating a task, empty by default)
   - _status_ (**not started** by default / **in progress** / **done**)
   - etc.
-3. user_has_task table
+- user_has_task table
   - _fk_user_id_
   - _fk_task_id_
 
@@ -110,5 +110,18 @@ Here is a minimal list of what you can do as a bonus:
   - notifications
 - implement a real login system (OAuth / SSO / LDAP / etc.)
 - develop what’s in your mind
+
+# Table of content
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [EPyTodo - A web ToDo app](#epytodo-a-web-todo-app)
+- [Subject](#subject)
+	- [MySQL Database](#mysql-database)
+	- [Web Server](#web-server)
+	- [HTML pages](#html-pages)
+- [Bonus](#bonus)
+- [Table of content](#table-of-content)
+
+<!-- /TOC -->
 
 [TIP]: http://lmgtfy.com/?q=MVC
