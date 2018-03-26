@@ -29,7 +29,7 @@ Its tables are named :
 - task
 - user_has_task
 
-> :bulb: Think about the last one : why do you need this ?
+> :bulb: Think about the last one : why do you need this ?<br />
 > Maybe it has to do with relationship...
 
 Here are all fields (with types or values) which you must have into your tables:
@@ -55,7 +55,7 @@ Once your scheme is created, import your file into your MySQL server
 ∼/B-WEB-200> cat epytodo.sql | mysql -u root -p
 ```
 
-> :exclamation: Your sql file has to be placed at the root folder when turned in.
+> :exclamation: Your sql file has to be placed at the root folder when turned in.<br />
 > Do not insert any records into this file
 
 ## Web Server
@@ -98,7 +98,7 @@ This graphical part will be evaluated during your presentation.
 
 # Bonus
 
-> :exclamation: Do not integrate any extra features like allowing PUT or DELETE methods into your main delivery.
+> :exclamation: Do not integrate any extra features like allowing PUT or DELETE methods into your main delivery.<br />
 > Do this into a bonus directory
 
 Here is a minimal list of what you can do as a bonus:
