@@ -34,20 +34,20 @@ Its tables are named :
 
 Here are all fields (with types or values) which you must have into your tables:
 - user table
-  - _user_id_ (mandatory not null)
-  - _username_ (mandatory not null)
-  - _password_ (mandatory not null)
+  - **_user_id_** (mandatory not null)
+  - **_username_** (mandatory not null)
+  - **_password_** (mandatory not null)
   - etc.
 - task table
-  - _task_id_ (mandatory not null)
-  - _title_ (mandatory not null)
-  - _begin_ (optional value when creating a task, actual date by default)
-  - _end_ (optional value when creating a task, empty by default)
-  - _status_ (**not started** by default / **in progress** / **done**)
+  - **_task_id_** (mandatory not null)
+  - **_title_** (mandatory not null)
+  - **_begin_** (optional value when creating a task, actual date by default)
+  - **_end_** (optional value when creating a task, empty by default)
+  - **_status_** (**not started** by default / **in progress** / **done**)
   - etc.
 - user_has_task table
-  - _fk_user_id_
-  - _fk_task_id_
+  - **_fk_user_id_**
+  - **_fk_task_id_**
 
 Once your scheme is created, import your file into your MySQL server
 
@@ -61,34 +61,34 @@ Once your scheme is created, import your file into your MySQL server
 ## Web Server
 
 Files to turn in (refer to the bootstrap to know where placing them into your folders):
-- run.py
-- __init__.py
-- models.py
-- views.py
-- controller.py
+- **run.py**
+- **&#95;&#95;init&#95;&#95;.py**
+- **models.py**
+- **views.py**
+- **controller.py**
 
 You server will implement a MVC architecture.
 There’s not only ONE way to implement it but it’s **mandatory** to do so.
 Look closely at schemes you can find. Here’s a [TIP].
 
 More explanations of what is attempted into each file:
-- _run.py_ : your entry program
-- _&#95;&#95;init&#95;&#95;.py_ : your app package file
-- _models.py_ : all objects / functions which will interact with your database
-- _views.py_ : all routes which are described into the API file
-- _controller.py_ : all interactions between your views and your models
+- **_run.py_** : your entry program
+- **_&#95;&#95;init&#95;&#95;.py_** : your app package file
+- **_models.py_** : all objects / functions which will interact with your database
+- **_views.py_** : all routes which are described into the API file
+- **_controller.py_** : all interactions between your views and your models
 
-We will add our _config.py_ file.
+We will add our **_config.py_* file.
 
 All settings for your program (debug mode, database configuration, etc.) will be there!
 Here are the required ones :
-- _DATABASE_NAME_
-- _DATABASE_HOST_
-- _DATABASE_SOCK_
-- _DATABASE_USER_
-- _DATABASE_PASS_
+- **_DATABASE_NAME_**
+- **_DATABASE_HOST_**
+- **_DATABASE_SOCK_**
+- **_DATABASE_USER_**
+- **_DATABASE_PASS_**
 
-Be sure that your _config.py_ is similar and used effectively.
+Be sure that your **_config.py_** is similar and used effectively.
 
 ## HTML pages
 
