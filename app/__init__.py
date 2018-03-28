@@ -11,6 +11,13 @@ import pymysql as sql
 app = Flask(__name__)
 app.config.from_object('config')
 
-connection = sql.connect(host=app.config['DATABASE_HOST'],
-						user=app.config['DATABASE_USER'],
-						password=app.config['DATABASE_PASS'])
+host = app.config['DATABASE_HOST']
+user = app.config['DATABASE_USER']
+passwd = app.config['DATABASE_PASS']
+name = app.config['DATABASE_NAME']
+unix = app.config['DATABASE_SOCK']
+
+if unix == None:
+	connection = sql.connect(host=host, user=user, password=passwd, db=name)
+else:
+	connection = sql.connect(unix_socket=unix, user=user, password=passwd, db=name)
