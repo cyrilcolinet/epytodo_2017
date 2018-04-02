@@ -5,26 +5,31 @@
 ## __init__ file
 ##
 
-from flask import Flask, render_template, request
+#from app.models import *
+from flask import *
 import pymysql as sql
-import sys
 
 app = Flask(__name__)
 app.config.from_object('config')
 
-con = None
+conn = None
 
 try:
 	if app.config['DATABASE_SOCK'] == None:
-		con = sql.connect(host=app.config['DATABASE_HOST'],
+		conn = sql.connect(host=app.config['DATABASE_HOST'],
 		                  user=app.config['DATABASE_USER'],
 						  password=app.config['DATABASE_PASS'],
 						  db=app.config['DATABASE_NAME'])
 	else:
-		con = sql.connect(unix=app.config['DATABASE_SOCK'],
+		conn = sql.connect(unix=app.config['DATABASE_SOCK'],
 		                  user=app.config['DATABASE_USER'],
 						  password=app.config['DATABASE_PASS'],
 						  db=app.config['DATABASE_NAME'])
-except:
-	print("Error during connection.")
+	if conn == None:
+		raise Exception
+except (Exception) as err:
+	print(err)
 	exit(84)
+
+# Configuration of models
+#user = User("user")
