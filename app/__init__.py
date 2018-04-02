@@ -25,5 +25,6 @@ try:
 		                  user=app.config['DATABASE_USER'],
 						  password=app.config['DATABASE_PASS'],
 						  db=app.config['DATABASE_NAME'])
-except (ConnectionError) as error:
-	print(error)
+except:
+	print("Error during connection.")
+	exit(84)
