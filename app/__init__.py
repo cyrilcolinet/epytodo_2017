@@ -7,17 +7,23 @@
 
 from flask import Flask, render_template, request
 import pymysql as sql
+import sys
 
 app = Flask(__name__)
 app.config.from_object('config')
 
-host = app.config['DATABASE_HOST']
-user = app.config['DATABASE_USER']
-passwd = app.config['DATABASE_PASS']
-name = app.config['DATABASE_NAME']
-unix = app.config['DATABASE_SOCK']
+con = None
 
-if unix == None:
-	connection = sql.connect(host=host, user=user, password=passwd, db=name)
-else:
-	connection = sql.connect(unix_socket=unix, user=user, password=passwd, db=name)
+try:
+	if app.config['DATABASE_SOCK'] == None:
+		con = sql.connect(host=app.config['DATABASE_HOST'],
+		                  user=app.config['DATABASE_USER'],
+						  password=app.config['DATABASE_PASS'],
+						  db=app.config['DATABASE_NAME'])
+	else:
+		con = sql.connect(unix=app.config['DATABASE_SOCK'],
+		                  user=app.config['DATABASE_USER'],
+						  password=app.config['DATABASE_PASS'],
+						  db=app.config['DATABASE_NAME'])
+except (ConnectionError) as error:
+	print(error)
