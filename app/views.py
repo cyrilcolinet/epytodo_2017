@@ -8,7 +8,6 @@
 from app import *
 
 @app.route('/', methods = ['GET'])
-@app.route('/index', methods = ['GET'])
 
 def route_home():
     return Controller(app).index_action()
