@@ -12,10 +12,10 @@ from app import *
 @app.route('/index', methods = ['GET'])
 
 def route_home():
-	return render_template('index.html')
+    return render_template('index.html')
 
 ## User pages
 @app.route('/user/<username>', methods = ['POST'])
 
 def route_add_user(username):
-	return "User added !\n"
+    return "User added !\n"
