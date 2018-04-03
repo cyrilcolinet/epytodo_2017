@@ -9,18 +9,16 @@ from app import *
 from app.models import *
 from flask import render_template
 
-user = User()
-
 class Controller(object):
 
+    def __init__(self, app):
+        self.app = app
+        self.user = User(app)
+
     def index_action(self):
-        ##user.user_exists("cyril")
+        self.user.user_exists("cyril")
         return render_template("index.html")
-
-class AuthController(object):
-
-
 class UserController(object):
 
-
-class TaskController(object):
+    def aaaa():
+        return
