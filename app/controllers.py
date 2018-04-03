@@ -18,6 +18,7 @@ class Controller(object):
     def index_action(self):
         self.user.user_exists("cyril")
         return render_template("index.html")
+        
 class UserController(object):
 
     def __init__(self, app):
