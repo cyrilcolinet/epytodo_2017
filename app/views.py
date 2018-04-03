@@ -14,7 +14,8 @@ def route_home():
 
 @app.route('/register', methods = ['POST'])
 def route_register():
-    return
+    controller = AuthController(app, get_connection())
+    return controller.register_action(request)
 
 @app.route('/sigin', methods = ['POST'])
 def route_sigin():
