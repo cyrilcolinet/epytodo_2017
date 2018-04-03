@@ -18,9 +18,6 @@ class User(object):
         cur = self.conn.cursor()
         exists = 1
         cur.execute("SELECT COUNT(1) FROM %s WHERE username = '%s'" % (self.table, username))
-        exists = cur.fetchone()
-        if exists == 1:
-            print("User exists")
-        else:
-            print("User doesn't exists")
+        exists = cur.fetchone()[0]
         cur.close()
+        return exists

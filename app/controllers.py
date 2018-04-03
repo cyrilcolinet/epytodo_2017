@@ -17,7 +17,10 @@ class Controller(object):
         self.user = User(app, conn)
 
     def index_action(self):
-        self.user.user_exists("cyril")
+        if self.user.user_exists("mrlizzard") == 1:
+            print("User exists")
+        else:
+            print("User doesn't exists")
         return render_template("index.html")
 
 class UserController(object):
