@@ -59,7 +59,13 @@ class User(object):
             cur.execute("SELECT password FROM %s WHERE username = '%'" % (self.table, username))
             pwd = cur.fetchone()[0]
             cur.close()
-            return True if pwd == password else False
+            hash = hashlib.sha512()
+            hash.update(salt.encode())
+            hash.update(password.encode())
+            digest = hash.hexdigest()
+            print(pwd)
+            print(digest)
+            return True if digest == pwd else False
         except (Exception) as err:
             print(err)
             return False
