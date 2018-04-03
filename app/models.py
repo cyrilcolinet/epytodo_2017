@@ -44,7 +44,7 @@ class User(object):
     def user_get_id(self, username):
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT user_id FROM %s username = '%s'" % (self.table, username))
+            cur.execute("SELECT user_id FROM %s WHERE username = '%s'" % (self.table, username))
             id = cur.fetchone()[0]
             cur.close()
             return id
