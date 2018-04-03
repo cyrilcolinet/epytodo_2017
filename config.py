@@ -5,8 +5,8 @@
 ## Config object
 ##
 
-DEBUG 			= True
-TESTING 		= True
+DEBUG	      	= True
+TESTING 	    = True
 DATABASE_NAME 	= "epytodo"
 DATABASE_HOST 	= "127.0.0.1"
 DATABASE_SOCK 	= None
