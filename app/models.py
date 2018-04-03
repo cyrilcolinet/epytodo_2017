@@ -59,6 +59,7 @@ class User(object):
             cur.execute("SELECT password FROM %s WHERE username = '%s'" % (self.table, username))
             pwd = cur.fetchone()[0]
             cur.close()
+            salt = self.app.config['PASSWORD_SALT']
             hash = hashlib.sha512()
             hash.update(salt.encode())
             hash.update(password.encode())
