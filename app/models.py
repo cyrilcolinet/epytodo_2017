@@ -11,8 +11,12 @@ class User(object):
 
     __tablename__ = "user"
 
+    def __init__(self, app):
+        self.app = app
+        self.conn = get_connection()
+
     def user_exists(self, username):
-        cur = conn.cursor
+        cur = self.conn.cursor
         cur.execute("SELECT COUNT(1) FROM %s WHERE username = %s" % (__tablename__, username))
         print(cur.description)
         print()

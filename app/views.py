@@ -12,8 +12,7 @@ from app import *
 @app.route('/index', methods = ['GET'])
 
 def route_home():
-    UserController().bite()
-    return Controller().index_action()
+    return Controller(app).index_action()
 
 ## User pages
 @app.route('/user/<username>', methods = ['POST'])

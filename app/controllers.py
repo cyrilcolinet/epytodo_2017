@@ -9,18 +9,17 @@ from app import *
 from app.models import *
 from flask import render_template
 
-user = User()
-
 class Controller(object):
 
-    def index_action(self):
-        ##user.user_exists("cyril")
-        return render_template("index.html")
+    def __init__(self, app):
+        self.app = app
+        self.user = User(app)
 
-    def fraise(self):
-        print("bite")
+    def index_action(self):
+        self.user.user_exists("cyril")
+        return render_template("index.html")
 
 class UserController(object):
 
-    def bite(self):
-        Controller().fraise()
+    def aaaa():
+        return
