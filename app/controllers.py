@@ -16,3 +16,10 @@ class Controller(object):
     def index_action(self):
         ##user.user_exists("cyril")
         return render_template("index.html")
+
+class UserController(object):
+
+    controller = None
+
+    def __init__(self):
+        self.controller = new Controller()
