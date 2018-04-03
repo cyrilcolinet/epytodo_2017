@@ -17,13 +17,15 @@ def route_register():
     controller = AuthController(app, get_connection())
     return controller.register_action(request)
 
-@app.route('/sigin', methods = ['POST'])
-def route_sigin():
-    return
+@app.route('/signin', methods = ['POST'])
+def route_signin():
+    controller = AuthController(app, get_connection())
+    return controller.register_signin(request)
 
-@app.route('/sigout', methods = ['POST'])
-def route_sigout():
-    return
+@app.route('/signout', methods = ['POST'])
+def route_signout():
+    controller = AuthController(app, get_connection())
+    return controller.register_signout(request)
 
 @app.route('/user', methods = ['GET'])
 def route_user_info():
