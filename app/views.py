@@ -7,25 +7,20 @@
 
 from app import *
 
-## Index page
 @app.route('/', methods = ['GET'])
 def route_main():
     UserController().bite()
     return Controller().index_action()
 
-##register
 @app.route('/register', methods = ['POST'])
 def route_register():
 
-##sigin
 @app.route('/sigin', methods = ['POST'])
 def route_sigin():
 
-##sigout
 @app.route('/sigout', methods = ['POST'])
 def route_sigout():
 
-##user
 @app.route('/user', methods = ['GET'])
 def route_user_info():
 
