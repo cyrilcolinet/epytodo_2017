@@ -21,7 +21,6 @@ class Controller(object):
             print("User exists")
         else:
             print("User doesn't exists")
-        self.user.user_create("zizi", "sisi")
         return render_template("index.html")
 
 class UserController(object):
