@@ -7,7 +7,7 @@
 
 from app.controllers import *
 from app.connection import *
-from flask import Flask
+from flask import *
 import pymysql as sql
 
 # Configure flask module

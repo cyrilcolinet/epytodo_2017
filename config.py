@@ -18,4 +18,4 @@ DATABASE_PASS 	= ""
 
 ## Hashing variables
 ## WARN: If this variables is edited, all password may be incorrect
-PASSWORD_SALT   = "udh_ÈIIEok-_È86783"
+PASSWORD_SALT   = "oui"
