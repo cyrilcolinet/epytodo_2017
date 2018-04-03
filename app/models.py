@@ -6,6 +6,7 @@
 ##
 
 from app import *
+import hashlib as hash
 
 class User(object):
 
@@ -21,3 +22,7 @@ class User(object):
         exists = cur.fetchone()[0]
         cur.close()
         return exists
+
+     def user_create(self, username, password):
+         hashed = hash.sha512(password)
+         print(hashed)
