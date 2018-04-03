@@ -16,17 +16,26 @@ class User(object):
         self.table = "user"
 
     def user_exists(self, username):
-        cur = self.conn.cursor()
-        exists = 1
-        cur.execute("SELECT COUNT(1) FROM %s WHERE username = '%s'" % (self.table, username))
-        exists = cur.fetchone()[0]
-        cur.close()
-        return exists
+        try:
+            cur = self.conn.cursor()
+            cur.execute("SELECT COUNT(1) FROM %s WHERE username = '%s'" % (self.table, username))
+            exists = cur.fetchone()[0]
+            cur.close()
+            return exists
+        except (Exception) as error:
+            print(error)
+            exit(84)
 
     def user_create(self, username, password):
         salt = self.app.config['PASSWORD_SALT']
-        hash = hashlib.sha512()
-        hash.update(salt.encode())
-        hash.update(password.encode())
-        digest = hash.hexdigest()
-        print(digest)
+        try:
+            hash = hashlib.sha512()
+            hash.update(salt.encode())
+            hash.update(password.encode())
+            digest = hash.hexdigest()
+            cur = self.conn.cursor()
+            cur.execute("INSERT INTO %s (username, password) VALUES ('%s', '%s')"
+                % (self.table, username, digest))
+        except (Exception) as error:
+            print(error)
+            exit(84)
