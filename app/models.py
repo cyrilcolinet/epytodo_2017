@@ -25,8 +25,8 @@ class User(object):
 
     def user_create(self, username, password):
         salt = self.app.config['PASSWORD_SALT']
-        hash = hashlib.sha512(b"")
-        hash.update(b"" + salt)
-        hash.update(b"" + password)
+        hash = hashlib.sha512()
+        hash.update(salt.encode())
+        hash.update(password.encode())
         digest = hash.hexdigest()
         print(digest)
