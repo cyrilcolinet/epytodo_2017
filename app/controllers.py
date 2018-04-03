@@ -17,10 +17,10 @@ class Controller(object):
         ##user.user_exists("cyril")
         return render_template("index.html")
 
-    def fraise(self):
-        print("bite")
+class AuthController(object):
+
 
 class UserController(object):
 
-    def bite(self):
-        Controller().fraise()
+
+class TaskController(object):

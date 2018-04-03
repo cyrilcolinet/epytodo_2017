@@ -1,0 +1,22 @@
+body {
+	background-color: grey;
+}
+h1 {
+	color: red;
+	text-align: center;
+}
+p {
+	color: black;
+	font-family: "Times New Roman";
+	font-size: 50px;
+}
+button {
+	background-color: black;
+	border: 5px;
+	color: white;
+	padding: 20px 14px;
+	margin-left: 20px;
+}
+.red {
+	color: #FF0000;
+}
