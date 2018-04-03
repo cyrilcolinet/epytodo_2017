@@ -6,7 +6,7 @@
 ##
 
 from app import *
-import hashlib as hash
+import hashlib
 
 class User(object):
 
@@ -23,6 +23,10 @@ class User(object):
         cur.close()
         return exists
 
-     def user_create(self, username, password):
-         hashed = hash.sha512(password)
-         print(hashed)
+    def user_create(self, username, password):
+        salt = self.app.config['PASSWORD_SALT']
+        hash = hashlib.sha512(b"")
+        hash.update(b"" + salt)
+        hash.update(b"" + password)
+        digest = hash.hexdigest()
+        print(digest)
