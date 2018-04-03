@@ -28,7 +28,7 @@ class AuthController(object):
     def register_action(self, request):
         username = request.form['username']
         password = request.form['password']
-        if (not username.isalnum() or not password.isalnum()):
+        if (not username.isalnum()):
             print('invalid: Only alpha-numeric characters are allowed')
         else:
             if self.user.user_exists(username):
@@ -43,21 +43,18 @@ class AuthController(object):
     def signin_action(self, request):
         username = request.form['username']
         password = request.form['password']
-        if (not username.isalnum() or not password.isalnum()):
-            print('invalid: Only alpha-numeric characters are allowed')
-        else:
-            if ((len(username) > 0) and (len(password) > 0)):
-                if (self.user.user_exists(username)
-                and self.user.user_check_password(username, password)):
-                    print("User exists")
-                    session['username'] = username
-                    session['id'] = self.user.user_get_id(username)
-                    print(session['username'], session['id'])
-                    return redirect(url_for('route_user_info'))
-                else:
-                    print("user doesn't exist")
+        if ((len(username) > 0) and (len(password) > 0)):
+            if (self.user.user_exists(username)
+            and self.user.user_check_password(username, password)):
+                print("User exists")
+                session['username'] = username
+                session['id'] = self.user.user_get_id(username)
+                print(session['username'], session['id'])
+                return redirect(url_for('route_user_info'))
             else:
-                print('Invalid: you need to enter the name and the password')
+                print("user doesn't exist")
+        else:
+            print('Invalid: you need to enter the name and the password')
         return redirect(url_for('route_home'))
 
     def signout_action(self, request):
