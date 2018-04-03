@@ -21,5 +21,15 @@ class Controller(object):
 
 class UserController(object):
 
-    def aaaa():
-        return
+    def __init__(self, app):
+        self.app = app
+
+class TaskController(object):
+
+    def __init__(self, app):
+        self.app = app
+
+class AuthController(object):
+
+    def __init__(self, app):
+        self.app = app
