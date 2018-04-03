@@ -20,12 +20,12 @@ def route_register():
 @app.route('/signin', methods = ['POST'])
 def route_signin():
     controller = AuthController(app, get_connection())
-    return controller.register_signin(request)
+    return controller.signin_action(request)
 
 @app.route('/signout', methods = ['POST'])
 def route_signout():
     controller = AuthController(app, get_connection())
-    return controller.register_signout(request)
+    return controller.signout_action(request)
 
 @app.route('/user', methods = ['GET'])
 def route_user_info():
