@@ -17,9 +17,10 @@ class Controller(object):
         ##user.user_exists("cyril")
         return render_template("index.html")
 
+    def fraise(self):
+        print("bite")
+
 class UserController(object):
 
-    controller = None
-
-    def __init__(self):
-        self.controller = new Controller()
+    def bite(self):
+        Controller().fraise()

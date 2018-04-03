@@ -12,6 +12,7 @@ from app import *
 @app.route('/index', methods = ['GET'])
 
 def route_home():
+    UserController().bite()
     return Controller().index_action()
 
 ## User pages
