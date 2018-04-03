@@ -31,7 +31,7 @@ class AuthController(object):
         if (not username.isalnum() or not password.isalnum()):
             print('invalid: Only alpha-numeric characters are allowed')
         else:
-            if self.user.user_exists(username) == 1:
+            if self.user.user_exists(username):
                 print("User exists")
             else:
                 if (len(username) > 0 and len(password) > 0):
@@ -47,10 +47,11 @@ class AuthController(object):
             print('invalid: Only alpha-numeric characters are allowed')
         else:
             if ((len(username) > 0) and (len(password) > 0)):
-                if (self.user.user_exists(username) == 1):
+                if (self.user.user_exists(username)
+                and self.user.user_check_password(username, password)):
                     print("User exists")
                     session['username'] = username
-                    session['id'] = 0
+                    session['id'] = self.user.user_get_id(username)
                     print(session['username'], session['id'])
                     return redirect(url_for('route_user_info'))
                 else:
