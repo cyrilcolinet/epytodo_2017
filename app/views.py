@@ -9,7 +9,6 @@ from app import *
 
 @app.route('/', methods = ['GET'])
 def route_main():
-    UserController().bite()
     return Controller().index_action()
 
 @app.route('/register', methods = ['POST'])
