@@ -1,33 +1,69 @@
-<!DOCTYPE html>
-<html lang="fr">
+{% extends "base.html" %}
+{% set title = "Accueil" %}
 
-<head>
-	<meta charset="utf-8">
-	<title>ToDo List</title>
-        <link rel="stylesheet" type="text/css" href="index.css">
-</head>
+{% block content %}
+<header class="bg-primary text-white">
+  <div class="container text-center">
+    <h1>Welcome to Scrolling Nav</h1>
+    <p class="lead">A landing page template freshly redesigned for Bootstrap 4</p>
+  </div>
+</header>
 
-<body>
-  <header>
-  </header>
+<section id="about">
+  <div class="container">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <h4 style="text-align:center; text-transform: uppercase">Déjà inscrit ? Connectez-vous !</h4>
+          <hr />
+          <form action="{{ url_for('route_register') }}" method="POST">
+              <div class="form-group">
+                 <input type="text" class="form-control" placeholder="Votre nom d'utilisateur">
+             </div>
+             <div class="form-group">
+                <input type="password" class="form-control" placeholder="Votre mot de passe">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Se Connecter</button>
+            </div>
+          </form>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <h4 style="text-align:center; text-transform: uppercase">Pas encore inscrit ?</h4>
+          <hr />
+          <form action="{{ url_for('route_register') }}" method="POST">
+              <div class="form-group">
+                 <input type="text" class="form-control" placeholder="Votre nom d'utilisateur">
+             </div>
+             <div class="form-group">
+                <input type="password" class="form-control" placeholder="Votre mot de passe">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-danger">S'enregistrer</button>
+            </div>
+          </form>
+      </div>
+  </div>
+</section>
 
-  <h1>"bienvenu !"</h1>
+<section id="services" class="bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h2>Services we offer</h2>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+      </div>
 
-  <button>register</button>
-  <button>sigin</button>
-  <button>sigout</button>
+    </div>
+  </div>
+</section>
 
-  <form action="{{ url_for('route_register') }}" method="POST">
-	  <label for="username">Username :</label>
-	  <input id="username" name="username" placeholder="Enter username" />
-	  <label for="password">Password :</label>
-	  <input id="password" name="password" placeholder="Enter password" />
-          <button type='submit' name='submit' vlue='submit'>submit</button>
-  </form>
-
-  <footer>
-  </footer>
-
-</body>
-<script type="text/javascript" scr="../static/js/index.js"></script>
-</html>
+<section id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2>Contact us</h2>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

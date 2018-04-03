@@ -25,6 +25,7 @@ class User(object):
         except (Exception) as error:
             print(error)
             exit(84)
+        return
 
     def user_create(self, username, password):
         salt = self.app.config['PASSWORD_SALT']
@@ -39,3 +40,4 @@ class User(object):
         except (Exception) as error:
             print(error)
             exit(84)
+        return
