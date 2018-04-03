@@ -28,13 +28,13 @@ class AuthController(object):
     def register_action(self, request):
         username = request.form['username']
         password = request.form['password']
-        if (not username.isalnum() and not password.isalnum()):
+        if (not username.isalnum() or not password.isalnum()):
             print('invalid: Only alpha-numeric characters are allowed')
         else:
             if self.user.user_exists(username) == 1:
                 print("User exists")
             else:
-                if (len(username) > 0 and len(password)):
+                if (len(username) > 0 and len(password) > 0):
                     self.user.user_create(username, password)
                 else:
                     print('Invalid: you need to enter the name and the password')
@@ -43,15 +43,18 @@ class AuthController(object):
     def signin_action(self, request):
         username = request.form['username']
         password = request.form['password']
-        if (not username.isalnum() and not password.isalnum()):
+        if (not username.isalnum() or not password.isalnum()):
             print('invalid: Only alpha-numeric characters are allowed')
         else:
-            if ((len(username) > 0) and (len(password) > 0) and (self.user.user_exists(username) == 1)):
-                print("User exists")
-                session['username'] = username
-                session['id'] = 0
-                print(session['username'], session['id'])
-                return redirect(url_for('route_user_info'))
+            if ((len(username) > 0) and (len(password) > 0)):
+                if (self.user.user_exists(username) == 1):
+                    print("User exists")
+                    session['username'] = username
+                    session['id'] = 0
+                    print(session['username'], session['id'])
+                    return redirect(url_for('route_user_info'))
+                else:
+                    print("user doesn't exist")
             else:
                 print('Invalid: you need to enter the name and the password')
         return redirect(url_for('route_home'))
