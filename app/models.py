@@ -21,11 +21,11 @@ class User(object):
             cur.execute("SELECT COUNT(1) FROM %s WHERE username = '%s'" % (self.table, username))
             exists = cur.fetchone()[0]
             cur.close()
-            return exists
+            return True if exists == 1 else False
         except (Exception) as error:
             print(error)
-            exit(84)
-        return
+            return True
+        return True
 
     def user_create(self, username, password):
         salt = self.app.config['PASSWORD_SALT']
@@ -37,7 +37,30 @@ class User(object):
             cur = self.conn.cursor()
             cur.execute("INSERT INTO %s (username, password) VALUES ('%s', '%s')"
                 % (self.table, username, digest))
+            self.conn.commit()
         except (Exception) as error:
             print(error)
-            exit(84)
-        return
+
+    def user_get_id(self, username):
+        try:
+            cur = self.conn.cursor()
+            cur.execute("SELECT user_id FROM %s username = '%s'" % (self.table, username))
+            id = cur.fetchone()[0]
+            cur.close()
+            return id
+        except (Exception) as err:
+            print(err)
+            return -1
+        return -1
+
+    def user_check_password(self, username, password):
+        try:
+            cur = self.conn.cursor()
+            cur.execute("SELECT password FROM %s WHERE username = '%'" % (self.table, username))
+            pwd = cur.fetchone()[0]
+            cur.close()
+            return True if pwd == password else False
+        except (Exception) as err:
+            print(err)
+            return False
+        return False
