@@ -10,28 +10,28 @@ import pymysql as sql
 
 class ConnectionManager(object):
 
-    cononection = None
-
     def __init__(self, app):
         self.app = app
+        self.conn = None
+        self.connect(app.config)
 
-    def connect(self):
+    def connect(self, config):
         try:
-            if app.config['DATABASE_SOCK'] == None:
-                connection = sql.connect(host=app.config['DATABASE_HOST'],
-                                         user=app.config['DATABASE_USER'],
-                                         password=app.config['DATABASE_PASS'],
-                                         db=app.config['DATABASE_NAME'])
+            if config['DATABASE_SOCK'] == None:
+                self.conn = sql.connect(host=config['DATABASE_HOST'],
+                                         user=config['DATABASE_USER'],
+                                         password=config['DATABASE_PASS'],
+                                         db=config['DATABASE_NAME'])
             else:
-                connection = sql.connect(unix=app.config['DATABASE_SOCK'],
-                                         user=app.config['DATABASE_USER'],
-                                         password=app.config['DATABASE_PASS'],
-                                         db=app.config['DATABASE_NAME'])
-            if connection == None:
+                self.conn = sql.connect(unix=config['DATABASE_SOCK'],
+                                         user=config['DATABASE_USER'],
+                                         password=config['DATABASE_PASS'],
+                                         db=config['DATABASE_NAME'])
+            if self.conn == None:
                 raise Exception
         except (Exception) as error:
             print(error)
             exit(84)
 
     def get_connection(self):
-        return connection
+        return self.conn

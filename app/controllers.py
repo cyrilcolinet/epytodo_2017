@@ -11,14 +11,15 @@ from flask import render_template
 
 class Controller(object):
 
-    def __init__(self, app):
+    def __init__(self, app, conn):
         self.app = app
-        self.user = User(app)
+        self.conn = conn
+        self.user = User(app, conn)
 
     def index_action(self):
         self.user.user_exists("cyril")
         return render_template("index.html")
-        
+
 class UserController(object):
 
     def __init__(self, app):

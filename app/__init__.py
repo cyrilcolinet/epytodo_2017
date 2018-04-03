@@ -21,4 +21,4 @@ def get_application():
 conn = ConnectionManager(app)
 
 def get_connection():
-    return conn
+    return conn.get_connection()

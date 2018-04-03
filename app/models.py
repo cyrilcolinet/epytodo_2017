@@ -9,17 +9,18 @@ from app import *
 
 class User(object):
 
-    __tablename__ = "user"
-
-    def __init__(self, app):
+    def __init__(self, app, conn):
         self.app = app
-        self.conn = get_connection()
+        self.conn = conn
+        self.table = "user"
 
     def user_exists(self, username):
-        cur = self.conn.cursor
-        cur.execute("SELECT COUNT(1) FROM %s WHERE username = %s" % (__tablename__, username))
-        print(cur.description)
-        print()
-        for row in cur:
-            print(row)
+        cur = self.conn.cursor()
+        exists = 1
+        cur.execute("SELECT COUNT(1) FROM %s WHERE username = '%s'" % (self.table, username))
+        exists = cur.fetchone()
+        if exists == 1:
+            print("User exists")
+        else:
+            print("User doesn't exists")
         cur.close()
