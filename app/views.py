@@ -8,8 +8,10 @@
 from app import *
 
 @app.route('/', methods = ['GET'])
-def route_main():
-    return Controller().index_action()
+@app.route('/index', methods = ['GET'])
+
+def route_home():
+    return Controller(app).index_action()
 
 @app.route('/register', methods = ['POST'])
 def route_register():
