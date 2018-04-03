@@ -46,14 +46,19 @@ class AuthController(object):
         if (not username.isalnum() and not password.isalnum()):
             print('invalid: Only alpha-numeric characters are allowed')
         else:
-            if (len(username) > 0 and len(password) and self.user.user_exists(username) == 1):
+            if ((len(username) > 0) and (len(password) > 0) and (self.user.user_exists(username) == 1)):
                 print("User exists")
+                session['username'] = username
+                session['id'] = 0
+                print(session['username'], session['id'])
                 return redirect(url_for('route_user_info'))
             else:
                 print('Invalid: you need to enter the name and the password')
         return redirect(url_for('route_home'))
 
     def signout_action(self, request):
+        session.pop('username', None)
+        session.pop('id', None)
         return redirect(url_for('route_home'))
 
 class UserController(object):

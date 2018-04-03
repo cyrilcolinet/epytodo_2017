@@ -10,4 +10,5 @@ from app import views
 from app import app
 
 if __name__ == "__main__":
-        app.run()
+    app.secret_key = 'o334eeZzrgrzG.,FEZ,;/FAGE.?_t_SOEIF_OKJOEZAGHR342'
+    app.run()
