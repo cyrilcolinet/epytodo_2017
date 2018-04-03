@@ -56,7 +56,7 @@ class User(object):
     def user_check_password(self, username, password):
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT password FROM %s WHERE username = '%'" % (self.table, username))
+            cur.execute("SELECT password FROM %s WHERE username = '%s'" % (self.table, username))
             pwd = cur.fetchone()[0]
             cur.close()
             hash = hashlib.sha512()
