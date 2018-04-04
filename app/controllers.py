@@ -17,8 +17,8 @@ class Controller(object):
         self.conn = conn
         self.user = User(app, conn)
 
-    def index_action(self, api):
-        return render_template("index.html", api=api)
+    def index_action(self):
+        return render_template("index.html")
 
 class AuthController(object):
 
@@ -39,12 +39,12 @@ class AuthController(object):
         password = request.form['password']
         result = self.api.login(username, password)
         flash(result)
-        return redirect(url_for('route_home', api=result))
+        return redirect(url_for('route_home'))
 
     def signout_action(self, request):
         result = self.api.logout()
         flash(result)
-        return redirect(url_for('route_home', api=result))
+        return redirect(url_for('route_home'))
 
 
 class UserController(object):
