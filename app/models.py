@@ -15,6 +15,7 @@ class User(object):
         self.app = app
         self.conn = conn
         self.table = "user"
+        self.fk = "user_has_task"
 
     def exists(self, username):
         try:
@@ -78,6 +79,15 @@ class Task(object):
         self.app = app
         self.conn = conn
         self.table = "task"
+        self.fk = "user_has_task"
 
     def get_tasks(self, user_id):
-        return
+        try:
+            cur = self.conn.cursor()
+            cur.execute("SELECT fk_task_id FROM %s WHERE fk_user_id = %d"
+                % (self.fk, user_id))
+            ids = cur.fetchall()
+            for i in range(ids):
+                print(val[i])
+        except (Exception) as err:
+            print(err)

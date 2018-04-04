@@ -17,8 +17,8 @@ class Controller(object):
         self.conn = conn
         self.user = User(app, conn)
 
-    def index_action(self, api):
-        return render_template("index.html", api=api)
+    def index_action(self):
+        return render_template("index.html")
 
 class AuthController(object):
 
