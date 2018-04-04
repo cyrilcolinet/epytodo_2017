@@ -21,6 +21,7 @@ class Controller(object):
         return render_template("index.html", api=api)
 
 class AuthController(object):
+
     def __init__(self, app, conn):
         self.app = app
         self.conn = conn
@@ -30,8 +31,8 @@ class AuthController(object):
         username = request.form['username']
         password = request.form['password']
         result = self.api.user_create(username, password)
-        print(result)
-        return redirect(url_for('route_home', api=result))
+        flash(result)
+        return redirect(url_for('route_home'))
 
     def signin_action(self, request):
         username = request.form['username']
