@@ -52,3 +52,4 @@ class API(object):
         session.pop('username', None)
         session.pop('id', None)
         ret['result'] = "signout successful"
+        return json.dumps(ret)
