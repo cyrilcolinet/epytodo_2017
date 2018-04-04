@@ -32,7 +32,7 @@ class API(object):
                     ret['result'] = "account created"
         return json.dumps(ret)
 
-    def login(self, username, password):
+    def user_login(self, username, password):
         ret = {}
         if not username and not password:
             ret['error'] = "login or password does not match"
@@ -47,7 +47,7 @@ class API(object):
                 ret["result"] = "signin successful"
         return json.dumps(ret)
 
-    def logout(self):
+    def user_logout(self):
         ret = {}
         session.pop('username', None)
         session.pop('id', None)

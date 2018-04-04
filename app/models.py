@@ -8,6 +8,7 @@
 from app import *
 import hashlib
 
+## User Model
 class User(object):
 
     def __init__(self, app, conn):
@@ -70,9 +71,12 @@ class User(object):
             return False
         return False
 
+## Task Model
 class Task(object):
 
     def __init__(self, app, conn):
         self.app = app
         self.conn = conn
         self.table = "task"
+
+    def get_tasks

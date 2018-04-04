@@ -37,12 +37,12 @@ class AuthController(object):
     def signin_action(self, request):
         username = request.form['username']
         password = request.form['password']
-        result = self.api.login(username, password)
+        result = self.api.user_login(username, password)
         flash(result)
         return redirect(url_for('route_home'))
 
     def signout_action(self, request):
-        result = self.api.logout()
+        result = self.api.user_logout()
         flash(result)
         return redirect(url_for('route_home'))
 
