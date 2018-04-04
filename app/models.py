@@ -71,3 +71,8 @@ class User(object):
         return False
 
 class Task(object):
+
+    def __init__(self, app, conn):
+        self.app = app
+        self.conn = conn
+        self.table = "task"
