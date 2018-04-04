@@ -36,24 +36,14 @@ class AuthController(object):
     def signin_action(self, request):
         username = request.form['username']
         password = request.form['password']
-        if ((len(username) > 0) and (len(password) > 0)):
-            if (self.user.exists(username)
-            and self.user.check_password(username, password)):
-                print("User exists")
-                session['username'] = username
-                session['id'] = self.user.get_id(username)
-                print(session['username'], session['id'])
-                return redirect(url_for('route_home'))
-            else:
-                print("user doesn't exist")
-        else:
-            print('Invalid: you need to enter the name and the password')
-        return redirect(url_for('route_home'))
+        result = self.api.login(username, password)
+        print(result)
+        return redirect(url_for('route_home', api=result))
 
     def signout_action(self, request):
-        session.pop('username', None)
-        session.pop('id', None)
-        return redirect(url_for('route_home'))
+        result = self.api.logout()
+        print(result)
+        return redirect(url_for('route_home', api=result))
 
 class UserController(object):
 

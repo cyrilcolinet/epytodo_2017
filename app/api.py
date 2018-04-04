@@ -26,9 +26,30 @@ class API(object):
                 ret['error'] = "account already exists"
             else:
                 if not username and not password:
-                    self.user.create(username, password)
                     ret['error'] = "internal error"
                 else:
                     self.user.create(username, password)
                     ret['result'] = "account created"
         return json.dumps(ret)
+
+    def login(self, username, password):
+        ret = {}
+        if not username and not password:
+            ret['error'] = "login or password does not match"
+        else:
+            if not self.user.exists(username):
+                ret['error'] = "login or password does not match"
+            elif not self.user.check_password(username, password):
+                ret['error'] = "login or password does not match"
+            else:
+                session['username'] = username
+                session['id'] = self.user.get_id(username)
+                print(session['username'], session['id'])
+                ret["result"] = "signin successful"
+        return json.dumps(ret)
+
+    def logout(self):
+        ret = {}
+        session.pop('username', None)
+        session.pop('id', None)
+        ret['result'] = "signout successful"
