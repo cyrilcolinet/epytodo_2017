@@ -79,4 +79,5 @@ class Task(object):
         self.conn = conn
         self.table = "task"
 
-    def get_tasks
+    def get_tasks(self, user_id):
+        return
