@@ -37,7 +37,6 @@ def route_user_all_task():
     controller = UserController(app, get_connection())
     return controller.signout_action(request)
 
-
 @app.route('/user/task/id', methods = ['GET'])
 def route_user_special_task():
     controller = UserController(app, get_connection())
