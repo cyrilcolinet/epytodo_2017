@@ -7,6 +7,7 @@
 
 from app import *
 from app.models import *
+from app.api import *
 from flask import *
 
 class Controller(object):
@@ -16,29 +17,21 @@ class Controller(object):
         self.conn = conn
         self.user = User(app, conn)
 
-    def index_action(self):
-        return render_template("index.html")
+    def index_action(self, api):
+        return render_template("index.html", api=api)
 
 class AuthController(object):
     def __init__(self, app, conn):
         self.app = app
         self.conn = conn
-        self.user = User(app, conn)
+        self.api = API(app, conn)
 
     def register_action(self, request):
         username = request.form['username']
         password = request.form['password']
-        if (not username.isalnum()):
-            print('invalid: Only alpha-numeric characters are allowed')
-        else:
-            if self.user.exists(username):
-                print("User exists")
-            else:
-                if (len(username) > 0 and len(password) > 0):
-                    self.user.create(username, password)
-                else:
-                    print('Invalid: you need to enter the name and the password')
-        return redirect(url_for('route_home'))
+        result = self.api.user_create(username, password)
+        print(result)
+        return redirect(url_for('route_home', api=result))
 
     def signin_action(self, request):
         username = request.form['username']

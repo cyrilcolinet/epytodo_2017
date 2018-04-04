@@ -10,7 +10,7 @@ from app import *
 @app.route('/', methods = ['GET'])
 def route_home():
     controller = Controller(app, get_connection())
-    return controller.index_action()
+    return controller.index_action(None)
 
 @app.route('/register', methods = ['POST'])
 def route_register():
