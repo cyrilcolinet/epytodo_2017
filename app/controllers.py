@@ -18,7 +18,7 @@ class Controller(object):
         self.user = User(app, conn)
 
     def index_action(self, api):
-        return render_template("index.html", api=api)
+        return render_template("index.html")
 
 class AuthController(object):
 
@@ -39,12 +39,12 @@ class AuthController(object):
         password = request.form['password']
         result = self.api.user_login(username, password)
         flash(result)
-        return redirect(url_for('route_home', api=result))
+        return redirect(url_for('route_home'))
 
     def signout_action(self, request):
         result = self.api.user_logout()
         flash(result)
-        return redirect(url_for('route_home', api=result))
+        return redirect(url_for('route_home'))
 
 class UserController(object):
 
@@ -52,3 +52,21 @@ class UserController(object):
         self.app = app
         self.conn = conn
         self.user = User(app, conn)
+
+    def view_user_info_action(self):
+        return render_template("index.html")
+
+    def view_user_all_task_action(self):
+        return render_template("index.html")
+
+    def view_user_special_task_action(self):
+        return render_template("index.html")
+
+    def update_task_action(self, request):
+        return redirect(url_for('route_home'))
+
+    def create_task_action(self, request):
+        return redirect(url_for('route_home'))
+
+    def delete_task_action(self, request):
+        return redirect(url_for('route_home'))
