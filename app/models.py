@@ -89,3 +89,12 @@ class Task(object):
             print(ids)
         except (Exception) as err:
             print(err)
+
+    def create_task(self, user_id, name):
+        try:
+            cur = self.conn.cursor()
+            cur.execute("INSERT INTO %s (id, title) VALUES ('%s', '%s')"
+                % (self.table, user_id, name))
+            self.conn.commit()
+        except (Exception) as err:
+            print(err)

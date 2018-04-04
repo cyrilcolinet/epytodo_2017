@@ -53,3 +53,9 @@ class API(object):
         session.pop('id', None)
         ret['result'] = "signout successful"
         return json.dumps(ret)
+
+    def task_create(self, title):
+        if session['username']:
+            ret = {}
+            self.task.create_task(session['id'], title)
+        return json.dumps(ret)

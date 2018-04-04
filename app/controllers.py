@@ -54,13 +54,15 @@ class UserController(object):
     def __init__(self, app, conn):
         self.app = app
         self.conn = conn
-        self.user = User(app, conn)
+        self.api = API(app, conn)
 
     def view_user_info_action(self):
         return render_template("index.html")
 
     def view_user_all_task_action(self):
-        return render_template("index.html")
+        result = self.api.task_create("lapute")
+        print(result)
+        return render_template("user_task.html")
 
     def view_user_special_task_action(self):
         return render_template("index.html")
@@ -69,6 +71,9 @@ class UserController(object):
         return redirect(url_for('route_user_all_task'))
 
     def create_task_action(self, request):
+        title = request.form['title']
+        result = self.api.task_create(title)
+        flash(result)
         return redirect(url_for('route_user_all_task'))
 
     def delete_task_action(self, request):
