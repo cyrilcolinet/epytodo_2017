@@ -17,7 +17,7 @@
 <body id="page-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">ToDo List</a>
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">ToDO List - {{ title }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,7 +32,7 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a href="{{ url_for('route_user_info') }}" class="btn btn-warning" role="button" aria-pressed="true" style="margin-right: 10px;">Informations</a>
+                        <a href="{{ url_for('route_user_info') }}" class="btn btn-warning" role="button" aria-pressed="true" style="margin-right: 10px;">{{ session.username }}</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" href="{{ url_for(('route_home')) }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-danger" role="button" aria-pressed="true">Déconnexion</a>
