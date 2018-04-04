@@ -46,6 +46,7 @@ class AuthController(object):
         flash(result)
         return redirect(url_for('route_home', api=result))
 
+
 class UserController(object):
 
     def __init__(self, app, conn):
