@@ -50,7 +50,7 @@ class AuthController(object):
                 session['username'] = username
                 session['id'] = self.user.user_get_id(username)
                 print(session['username'], session['id'])
-                return redirect(url_for('route_user_info'))
+                return redirect(url_for('route_home'))
             else:
                 print("user doesn't exist")
         else:

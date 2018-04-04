@@ -64,8 +64,6 @@ class User(object):
             hash.update(salt.encode())
             hash.update(password.encode())
             digest = hash.hexdigest()
-            print(pwd)
-            print(digest)
             return True if digest == pwd else False
         except (Exception) as err:
             print(err)
