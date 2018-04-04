@@ -15,7 +15,7 @@ class User(object):
         self.conn = conn
         self.table = "user"
 
-    def user_exists(self, username):
+    def exists(self, username):
         try:
             cur = self.conn.cursor()
             cur.execute("SELECT COUNT(1) FROM %s WHERE username = '%s'" % (self.table, username))
@@ -27,7 +27,7 @@ class User(object):
             return True
         return True
 
-    def user_create(self, username, password):
+    def create(self, username, password):
         salt = self.app.config['PASSWORD_SALT']
         try:
             hash = hashlib.sha512()
@@ -41,7 +41,7 @@ class User(object):
         except (Exception) as error:
             print(error)
 
-    def user_get_id(self, username):
+    def get_id(self, username):
         try:
             cur = self.conn.cursor()
             cur.execute("SELECT user_id FROM %s WHERE username = '%s'" % (self.table, username))
@@ -53,7 +53,7 @@ class User(object):
             return -1
         return -1
 
-    def user_check_password(self, username, password):
+    def check_password(self, username, password):
         try:
             cur = self.conn.cursor()
             cur.execute("SELECT password FROM %s WHERE username = '%s'" % (self.table, username))
@@ -69,3 +69,5 @@ class User(object):
             print(err)
             return False
         return False
+
+class Task(object):
