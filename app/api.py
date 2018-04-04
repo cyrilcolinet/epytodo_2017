@@ -44,7 +44,6 @@ class API(object):
             else:
                 session['username'] = username
                 session['id'] = self.user.get_id(username)
-                print(session['username'], session['id'])
                 ret["result"] = "signin successful"
         return json.dumps(ret)
 
