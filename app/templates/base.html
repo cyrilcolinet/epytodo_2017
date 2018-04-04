@@ -37,10 +37,7 @@
                     <li class="nav-item">
                         <a href="#" href="{{ url_for(('route_home')) }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-danger" role="button" aria-pressed="true">Déconnexion</a>
                     </li>
-                    <form id="logout-form" action="{{ url_for('route_signout') }}" method="post" style="display:none">
-                        <input name="logout">
-                        <input type="submit" id="submitBtn" value="Submit">
-                    </form>
+                    <form id="logout-form" action="{{ url_for('route_signout') }}" method="post" style="display:none"></form>
                     {% endif %}
                 </ul>
             </div>
