@@ -29,24 +29,30 @@ def route_signout():
 
 @app.route('/user', methods = ['GET'])
 def route_user_info():
-    return
+    controller = UserController(app, get_connection())
+    return controller.signout_action(request)
 
 @app.route('/user/task', methods = ['GET'])
 def route_user_all_task():
-    return
+    controller = UserController(app, get_connection())
+    return controller.signout_action(request)
 
 @app.route('/user/task/id', methods = ['GET'])
 def route_user_special_task():
-    return
+    controller = UserController(app, get_connection())
+    return controller.signout_action(request)
 
 @app.route('/user/task/id', methods = ['POST'])
 def route_update_task():
-    return
+    controller = UserController(app, get_connection())
+    return controller.signout_action(request)
 
 @app.route('/user/task/add', methods = ['POST'])
 def route_create_task():
-    return
+    controller = UserController(app, get_connection())
+    return controller.signout_action(request)
 
 @app.route('/user/task/del/id', methods = ['POST'])
 def route_delete_task():
-    return
+    controller = UserController(app, get_connection())
+    return controller.signout_action(request)
