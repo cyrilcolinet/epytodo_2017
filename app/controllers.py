@@ -9,6 +9,7 @@ from app import *
 from app.models import *
 from app.api import *
 from flask import *
+from datetime import datetime
 
 class Controller(object):
 
@@ -17,7 +18,7 @@ class Controller(object):
         self.conn = conn
         self.user = User(app, conn)
 
-    def index_action(self, api):
+    def index_action(self):
         return render_template("index.html")
 
 class AuthController(object):
@@ -63,10 +64,10 @@ class UserController(object):
         return render_template("index.html")
 
     def update_task_action(self, request):
-        return redirect(url_for('route_home'))
+        return redirect(url_for('route_user_all_task'))
 
     def create_task_action(self, request):
-        return redirect(url_for('route_home'))
+        return redirect(url_for('route_user_all_task'))
 
     def delete_task_action(self, request):
-        return redirect(url_for('route_home'))
+        return redirect(url_for('route_user_all_task'))
