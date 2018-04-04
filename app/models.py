@@ -84,10 +84,8 @@ class Task(object):
     def get_tasks(self, user_id):
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT fk_task_id FROM %s WHERE fk_user_id = %d"
-                % (self.fk, user_id))
+            cur.execute("SELECT fk_task_id FROM %s INNER JOIN %s ON user.user_id = user_has_task.fk_user_id" % (self.fk, self.table))
             ids = cur.fetchall()
-            for i in range(ids):
-                print(val[i])
+            print(ids)
         except (Exception) as err:
             print(err)

@@ -17,8 +17,10 @@ class Controller(object):
         self.app = app
         self.conn = conn
         self.user = User(app, conn)
+        self.task = Task(app, conn)
 
     def index_action(self):
+        self.task.get_tasks(3)
         return render_template("index.html")
 
 class AuthController(object):
