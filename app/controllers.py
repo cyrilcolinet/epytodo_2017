@@ -19,6 +19,12 @@ class Controller(object):
         self.user = User(app, conn)
 
     def index_action(self):
+<<<<<<< HEAD
+=======
+        tasks = self.task.get_tasks_by_user_id(1)
+        for task in tasks:
+            print(task)
+>>>>>>> 0ece7ff539a5268441b88e74f4758bf5921ae570
         return render_template("index.html")
 
 class AuthController(object):
@@ -52,10 +58,18 @@ class UserController(object):
     def __init__(self, app, conn):
         self.app = app
         self.conn = conn
-        self.api = API(app, conn)
+        self.user = User(app, conn)
+        if len(session) < 1:
+            dct = {}
+            dct['error'] = "you must be logged in"
+            ret = json.dumps(dct)
+            flash(ret)
 
     def view_user_info_action(self):
-        return render_template("index.html")
+        if len(session) < 1:
+            print("ouais")
+            return redirect(url_for('route_home'))
+        return render_template("profile.html")
 
     def view_user_all_task_action(self):
         return render_template("user_task.html")
