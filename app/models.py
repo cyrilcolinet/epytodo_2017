@@ -40,6 +40,7 @@ class User(object):
             cur.execute("INSERT INTO %s (username, password) VALUES ('%s', '%s')"
                 % (self.table, username, digest))
             self.conn.commit()
+            cur.close()
         except (Exception) as error:
             print(error)
 
