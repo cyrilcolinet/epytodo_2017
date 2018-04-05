@@ -55,7 +55,22 @@ class API(object):
         return json.dumps(ret)
 
     def task_create(self, title):
+        ret = {}
         if session['username']:
-            ret = {}
             self.task.create_task(session['id'], title)
+            ret["result"] = "new task added"
+        else:
+            ret["error"] = "you must be logged in"
+        return json.dumps(ret)
+
+    def task_delete(self, id):
+        ret = {}
+        if session['username']:
+            if self.task.id_exist(id):
+                self.task.delete_task(id)
+                ret['result'] = "deleted"
+            else:
+                ret["error"] = "task id does not exist"
+        else:
+            ret["error"] = "you must be logged in"
         return json.dumps(ret)
