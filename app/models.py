@@ -81,14 +81,22 @@ class Task(object):
         self.table = "task"
         self.fk = "user_has_task"
 
-    def get_tasks(self, user_id):
+    def get_tasks_by_user_id(self, user_id):
+        ret = []
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT fk_task_id FROM %s INNER JOIN %s ON user.user_id = user_has_task.fk_user_id" % (self.fk, self.table))
-            ids = cur.fetchall()
-            print(ids)
+            cur.execute("SELECT fk_task_id FROM %s WHERE fk_user_id = %d" % (self.fk, user_id))
+            ids = list(cur.fetchall())
+            cur.close()
+            for id in ids:
+                cur = self.conn.cursor()
+                cur.execute("SELECT * FROM %s WHERE task_id = %d" % (self.table, id[0]))
+                task = list(cur.fetchall()[0])
+                ret.append(task)
+            return ret
         except (Exception) as err:
             print(err)
+        return None
 
     def create_task(self, user_id, name):
         try:

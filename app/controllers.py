@@ -20,7 +20,9 @@ class Controller(object):
         self.task = Task(app, conn)
 
     def index_action(self):
-        self.task.get_tasks(3)
+        tasks = self.task.get_tasks_by_user_id(1)
+        for task in tasks:
+            print(task)
         return render_template("index.html")
 
 class AuthController(object):
@@ -54,26 +56,22 @@ class UserController(object):
     def __init__(self, app, conn):
         self.app = app
         self.conn = conn
-        self.api = API(app, conn)
+        self.user = User(app, conn)
 
     def view_user_info_action(self):
         return render_template("index.html")
 
     def view_user_all_task_action(self):
-        result = self.api.task_create("lapute")
-        print(result)
-        return render_template("user_task.html")
+        return render_template("index.html")
 
     def view_user_special_task_action(self):
+        self.api.task
         return render_template("index.html")
 
     def update_task_action(self, request):
         return redirect(url_for('route_user_all_task'))
 
     def create_task_action(self, request):
-        title = request.form['title']
-        result = self.api.task_create(title)
-        flash(result)
         return redirect(url_for('route_user_all_task'))
 
     def delete_task_action(self, request):
