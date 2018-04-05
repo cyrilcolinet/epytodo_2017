@@ -93,6 +93,7 @@ class Task(object):
                 cur.execute("SELECT * FROM %s WHERE task_id = %d" % (self.table, id[0]))
                 task = list(cur.fetchall()[0])
                 ret.append(task)
+                cur.close()
             return ret
         except (Exception) as err:
             print(err)

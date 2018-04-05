@@ -57,15 +57,22 @@ class UserController(object):
         self.app = app
         self.conn = conn
         self.user = User(app, conn)
+        if len(session) < 1:
+            dct = {}
+            dct['error'] = "you must be logged in"
+            ret = json.dumps(dct)
+            flash(ret)
 
     def view_user_info_action(self):
-        return render_template("index.html")
+        if len(session) < 1:
+            print("ouais")
+            return redirect(url_for('route_home'))
+        return render_template("profile.html")
 
     def view_user_all_task_action(self):
         return render_template("index.html")
 
     def view_user_special_task_action(self):
-        self.api.task
         return render_template("index.html")
 
     def update_task_action(self, request):
