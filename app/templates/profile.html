@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% set title = "Accueil" %}
+{% set title = "Mon Compte" %}
 
 {% block content %}
 <header class="bg-profile text-white">
     <div class="container text-center">
-        <h1 style="text-transform: uppercase;">{{ session.username }}</h1>
+        <h1 style="text-transform: uppercase;">{{ title }}</h1>
         <p class="lead">Consultez les informations de votre profil</p>
     </div>
 </header>
@@ -12,21 +12,27 @@
 <section id="services" class="bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                {% include 'flash.html' %}
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: 35%">
-                        <span class="sr-only">35% Complete (success)</span>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <b style="text-transform: uppercase;">Informations Générales</b>
                     </div>
-                    <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: 20%">
-                        <span class="sr-only">20% Complete (warning)</span>
-                    </div>
-                    <div class="progress-bar progress-bar-danger" style="width: 10%">
-                        <span class="sr-only">10% Complete (danger)</span>
+                    <div class="panel-footer">
+                        Taches totales :<span style="float: right" class="label label-info">{{ tasks_count }} au total</span><br />
+                        Taches en attente :<span style="float: right" class="label label-danger">{{ tasks_wait }} en attente</span><br />
+                        Taches en cours :<span style="float: right" class="label label-warning">{{ tasks_in_pr }} en cours</span><br />
+                        Taches terminées :<span style="float: right" class="label label-success">{{ tasks_done }} terminées</span><br />
+                        <hr />
+                        Nom d'utilisateur: <b style="float: right">{{ session.username }}</b><br />
                     </div>
                 </div>
-                <h2>Services we offer</h2>
+            </div>
+            <div class="col-md-8">
+                {% include 'flash.html' %}
+                <h2>Bonjour <b>{{ session.username }}</b>,</h2>
                 <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+                <div style="margin-bottom: 60px;"></div>
+                <h3>Voici la progression de vos tâches</h3>
             </div>
         </div>
     </div>
