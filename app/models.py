@@ -6,6 +6,7 @@
 ##
 
 from app import *
+from flask import *
 import hashlib
 
 ## User Model
@@ -21,6 +22,18 @@ class User(object):
         try:
             cur = self.conn.cursor()
             cur.execute("SELECT COUNT(1) FROM %s WHERE username = '%s'" % (self.table, username))
+            exists = cur.fetchone()[0]
+            cur.close()
+            return True if exists == 1 else False
+        except (Exception) as error:
+            print(error)
+            return True
+        return True
+
+    def exists_id(self, user_id):
+        try:
+            cur = self.conn.cursor()
+            cur.execute("SELECT COUNT(1) FROM %s WHERE user_id = '%s'" % (self.table, user_id))
             exists = cur.fetchone()[0]
             cur.close()
             return True if exists == 1 else False
@@ -83,7 +96,7 @@ class Task(object):
         self.fk = "user_has_task"
 
     def get_tasks_by_user_id(self, user_id):
-        ret = []
+        tasks = []
         try:
             cur = self.conn.cursor()
             cur.execute("SELECT fk_task_id FROM %s WHERE fk_user_id = %d" % (self.fk, user_id))
@@ -93,12 +106,12 @@ class Task(object):
                 cur = self.conn.cursor()
                 cur.execute("SELECT * FROM %s WHERE task_id = %d" % (self.table, id[0]))
                 task = list(cur.fetchall()[0])
-                ret.append(task)
+                tasks.append(task)
                 cur.close()
-            return ret
+            return tasks
         except (Exception) as err:
             print(err)
-        return None
+        return tasks
 
     def create_task(self, user_id, name):
         try:

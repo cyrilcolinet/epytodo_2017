@@ -56,18 +56,32 @@ class UserController(object):
     def __init__(self, app, conn):
         self.app = app
         self.conn = conn
-        self.user = User(app, conn)
-        if len(session) < 1:
-            dct = {}
-            dct['error'] = "you must be logged in"
-            ret = json.dumps(dct)
-            flash(ret)
+        self.api = API(app, conn)
 
     def view_user_info_action(self):
-        if len(session) < 1:
-            print("ouais")
-            return redirect(url_for('route_home'))
-        return render_template("profile.html")
+        count = 0
+        tasks_wait = 0
+        tasks_done = 0
+        tasks_in_pr = 0
+        tasks = self.api.task_get_all(session['id'])
+        tasks = json.loads(tasks)
+        count = len(tasks['result'])
+        for task in tasks['result']:
+            if task[4] == "not started":
+                tasks_wait += 1
+            elif task[4] == "in progress":
+                tasks_in_pr += 1
+            elif task[4] == "done":
+                tasks_done += 1
+
+        print(tasks_done)
+        print(tasks_wait)
+        print(tasks_in_pr)
+
+        return render_template("profile.html", tasks_done=tasks_done,
+                                               tasks_in_pr=tasks_in_pr,
+                                               tasks_wait=tasks_wait,
+                                               tasks_count=count)
 
     def view_user_all_task_action(self):
         return render_template("index.html")

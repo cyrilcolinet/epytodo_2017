@@ -8,6 +8,7 @@
 from app import *
 from app.models import *
 from flask import *
+import datetime
 
 class API(object):
 
@@ -58,4 +59,13 @@ class API(object):
         if session['username']:
             ret = {}
             self.task.create_task(session['id'], title)
+        return json.dumps(ret)
+
+    def task_get_all(self, user_id):
+        ret = {}
+        if self.user.exists_id(user_id):
+            result = self.task.get_tasks_by_user_id(user_id)
+            ret['result'] = result
+        else:
+            ret['error'] = "user doesn't exists"
         return json.dumps(ret)
