@@ -17,12 +17,8 @@ class Controller(object):
         self.app = app
         self.conn = conn
         self.user = User(app, conn)
-        self.task = Task(app, conn)
 
     def index_action(self):
-        tasks = self.task.get_tasks_by_user_id(1)
-        for task in tasks:
-            print(task)
         return render_template("index.html")
 
 class AuthController(object):
@@ -84,7 +80,7 @@ class UserController(object):
                                                tasks_count=count)
 
     def view_user_all_task_action(self):
-        return render_template("index.html")
+        return render_template("user_task.html")
 
     def view_user_special_task_action(self):
         return render_template("index.html")
@@ -93,7 +89,14 @@ class UserController(object):
         return redirect(url_for('route_user_all_task'))
 
     def create_task_action(self, request):
+        title = request.form['title']
+        result = self.api.task_create(title)
+        print(result)
+        flash(result)
         return redirect(url_for('route_user_all_task'))
 
-    def delete_task_action(self, request):
+    def delete_task_action(self, request, id):
+        result = self.api.task_delete(id)
+        print(result)
+        flash(result)
         return redirect(url_for('route_user_all_task'))

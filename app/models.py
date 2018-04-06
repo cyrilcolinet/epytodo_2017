@@ -95,8 +95,18 @@ class Task(object):
         self.table = "task"
         self.fk = "user_has_task"
 
-    def get_tasks_by_user_id(self, user_id):
-        tasks = []
+    def id_exist(self, id):
+        try:
+            cur = self.conn.cursor(id)
+            cur.execute("SELECT COUNT(1) FROM %s WHERE task_id = '%d'" % (self.table, id))
+            exists = cur.fetchone()[0]
+            cur.close()
+            return True if exists == 1 else False
+        except (Exception) err:
+            print(err)
+        return True
+
+    def get_tasks(self, user_id):
         try:
             cur = self.conn.cursor()
             cur.execute("SELECT fk_task_id FROM %s WHERE fk_user_id = %d" % (self.fk, user_id))
@@ -119,5 +129,15 @@ class Task(object):
             cur.execute("INSERT INTO %s (id, title) VALUES ('%s', '%s')"
                 % (self.table, user_id, name))
             self.conn.commit()
+            cur.close()
+        except (Exception) as err:
+            print(err)
+
+    def delete_task(self, id):
+        try:
+            cur = self.conn.cursor()
+            cur.execute("DELETE FROM %s WHERE task_id = %d" % (self.table, id))
+            self.conn.commit()
+            cur.close()
         except (Exception) as err:
             print(err)
