@@ -13,15 +13,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                {% with messages = get_flashed_messages() %}
-                   {% if messages %}
-                      {% for message in messages %}
-                         <div class="alert alert-dark" role="alert">
-                             <span class="label label-success">Success Label</span> {{ message }}
-                         </div>
-                      {% endfor %}
-                   {% endif %}
-                {% endwith %}
+                {% include 'flash.html' %}
                 <h2>Services we offer</h2>
                 <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
             </div>

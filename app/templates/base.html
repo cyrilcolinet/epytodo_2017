@@ -12,6 +12,7 @@
 
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico')|autoversion }}" />
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')|autoversion }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/scrolling-nav.css')|autoversion }}" rel="stylesheet">
 </head>
@@ -27,17 +28,17 @@
                 <ul class="navbar-nav ml-auto">
                     {% if not session.username %}
                     <li class="nav-item">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-login" style="margin-right: 10px;">Connexion</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-login" style="margin-right: 10px;"><span class="fa fa-unlock" aria-hidden="true"></span>&nbsp;Connexion</button>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".modal-register">Inscription</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target=".modal-register"><span class="fa fa-plus" aria-hidden="true"></span>&nbsp;Inscription</button>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a href="{{ url_for('route_user_info') }}" class="btn btn-warning" role="button" aria-pressed="true" style="margin-right: 10px;">{{ session.username }}</a>
+                        <a href="{{ url_for('route_user_info') }}" class="btn btn-warning" role="button" aria-pressed="true" style="margin-right: 10px;"><span class="fa fa-user" aria-hidden="true"></span>&nbsp;{{ session.username }}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" href="{{ url_for(('route_home')) }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-danger" role="button" aria-pressed="true">Déconnexion</a>
+                        <a href="#" href="{{ url_for(('route_home')) }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-danger" role="button" aria-pressed="true"><span class="fa fa-lock" aria-hidden="true"></span>&nbsp;Déconnexion</a>
                     </li>
                     <form id="logout-form" action="{{ url_for('route_signout') }}" method="post" style="display:none"></form>
                     {% endif %}
