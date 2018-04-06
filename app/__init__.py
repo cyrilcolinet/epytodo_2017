@@ -5,6 +5,7 @@
 ## __init__ file
 ##
 
+import os
 from app.controllers import *
 from app.connection import *
 from flask import *
@@ -22,3 +23,13 @@ conn = ConnectionManager(app)
 
 def get_connection():
     return conn.get_connection()
+
+@app.template_filter('autoversion')
+def autoversion_filter(filename):
+  fullpath = os.path.join('app/', filename[1:])
+  try:
+      timestamp = str(os.path.getmtime(fullpath))
+  except OSError:
+      return filename
+  newfilename = "{0}?v={1}".format(filename, timestamp)
+  return newfilename

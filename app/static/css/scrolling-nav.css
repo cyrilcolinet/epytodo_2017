@@ -17,3 +17,13 @@ header {
 section {
   padding: 150px 0;
 }
+
+header, .bg-home {
+    background-image: url("/static/img/home-header.jpeg");
+    background-size: 100%;
+}
+
+header, .bg-profile {
+    background-image: url("/static/img/profile-header.jpg");
+    background-size: 100%;
+}
