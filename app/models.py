@@ -102,11 +102,12 @@ class Task(object):
             exists = cur.fetchone()[0]
             cur.close()
             return True if exists == 1 else False
-        except (Exception) err:
+        except (Exception) as err:
             print(err)
         return True
 
-    def get_tasks(self, user_id):
+    def get_tasks_by_user_id(self, user_id):
+        tasks = []
         try:
             cur = self.conn.cursor()
             cur.execute("SELECT fk_task_id FROM %s WHERE fk_user_id = %d" % (self.fk, user_id))
