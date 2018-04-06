@@ -35,7 +35,7 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a href="{{ url_for('route_user_info') }}" class="btn btn-warning" role="button" aria-pressed="true" style="margin-right: 10px;"><span class="fa fa-user" aria-hidden="true"></span>&nbsp;{{ session.username }}</a>
+                        <a href="{{ url_for('route_user_info') }}" class="btn btn-info" role="button" aria-pressed="true" style="margin-right: 10px;"><span class="fa fa-user" aria-hidden="true"></span>&nbsp;{{ session.username }}</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" href="{{ url_for(('route_home')) }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-danger" role="button" aria-pressed="true"><span class="fa fa-lock" aria-hidden="true"></span>&nbsp;Déconnexion</a>
