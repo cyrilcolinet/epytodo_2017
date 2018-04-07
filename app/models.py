@@ -137,6 +137,7 @@ class Task(object):
     def delete_task(self, id):
         try:
             cur = self.conn.cursor()
+            cur.execute("DELETE fk_task_id FROM %s WHERE fk_user_id = %d" % (self.fk, id))
             cur.execute("DELETE FROM %s WHERE task_id = %d" % (self.table, id))
             self.conn.commit()
             cur.close()
