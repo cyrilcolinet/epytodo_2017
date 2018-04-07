@@ -45,7 +45,7 @@ class API(object):
             else:
                 session['username'] = username
                 session['id'] = self.user.get_id(username)
-                ret["result"] = "signin successful"
+                ret['result'] = "signin successful"
         return json.dumps(ret)
 
     def user_logout(self):
@@ -55,13 +55,25 @@ class API(object):
         ret['result'] = "signout successful"
         return json.dumps(ret)
 
+    def task_update(self, id, name, status, description):
+        ret = {}
+        if session['username']:
+            if self.task.id_exist(id):
+                self.task.update_task(id, name, status, description)
+                ret['result'] = "update done"
+            else:
+                ret['error'] = "task id does not exist"
+        else:
+            ret['error'] = "you must be logged in"
+        return json.dumps(ret)
+
     def task_create(self, title):
         ret = {}
         if session['username']:
             self.task.create_task(session['id'], title)
-            ret["result"] = "new task added"
+            ret['result'] = "new task added"
         else:
-            ret["error"] = "you must be logged in"
+            ret['error'] = "you must be logged in"
         return json.dumps(ret)
 
     def task_delete(self, id):
@@ -71,9 +83,9 @@ class API(object):
                 self.task.delete_task(id)
                 ret['result'] = "deleted"
             else:
-                ret["error"] = "task id does not exist"
+                ret['error'] = "task id does not exist"
         else:
-            ret["error"] = "you must be logged in"
+            ret['error'] = "you must be logged in"
         return json.dumps(ret)
 
     def task_get_all(self, user_id):

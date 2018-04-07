@@ -124,6 +124,14 @@ class Task(object):
             print(err)
         return tasks
 
+    def update_task(self, id, name, status, description):
+        try:
+            cur = self.conn.cursor()
+            self.conn.commit()
+            cur.close()
+        except (Exception) as err:
+            print(err)
+
     def create_task(self, user_id, name):
         try:
             cur = self.conn.cursor()

@@ -85,7 +85,13 @@ class UserController(object):
     def view_user_special_task_action(self):
         return render_template("index.html")
 
-    def update_task_action(self, request):
+    def update_task_action(self, request, id):
+        name = request.form['name']
+        status = request.form['status']
+        description = request.form['description']
+        result = self.api.task_update(id, name, status, description)
+        print(result)
+        flash(result)
         return redirect(url_for('route_user_all_task'))
 
     def create_task_action(self, request):
