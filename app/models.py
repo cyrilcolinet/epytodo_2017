@@ -186,6 +186,8 @@ class Task(object):
                 datetime.strptime(begin, format).strftime(new_format)
                 print(begin)
                 cur.execute("INSERT INTO %s `begin` VALUES '%d'" % (self.table, begin))
+                cur.close()
+                cur = self.conn.cursor()
             if not end == "None" and not end == None:
                 print(end)
                 format = '%Y-%m-%dT%H:%M:%S'
@@ -193,6 +195,8 @@ class Task(object):
                 datetime.strptime(end, format).strftime(new_format)
                 print(end)
                 cur.execute("INSERT INTO %s `end` VALUES '%d'" % (self.table, end))
+                cur.close()
+                cur = self.conn.cursor()
             cur.execute("INSERT INTO %s (`title`, `status`) VALUES ('%s', '%s')"
                 % (self.table, title, status))
             self.conn.commit()

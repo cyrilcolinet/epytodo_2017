@@ -105,8 +105,6 @@
         </div>
     </div>
 
-    {% block scripts %}{% endblock %}
-
     <!-- Bootstrap core JavaScript -->
     <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')|autoversion }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
@@ -118,6 +116,7 @@
     <!-- Custom JavaScript for this theme -->
     <script src="{{ url_for('static', filename='js/scrolling-nav.js')|autoversion }}"></script>
 
+    {% block scripts %}{% endblock %}
 </body>
 
 </html>
