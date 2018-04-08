@@ -9,6 +9,7 @@
 from app import *
 from flask import *
 import hashlib
+import datetime
 
 ## User Model
 class User(object):
@@ -135,12 +136,7 @@ class Task(object):
     def update_task(self, task_id, name, status, description):
         try:
             cur = self.conn.cursor()
-            if (name):
-                cur.execute("UPDATE %s SET colonne_1 = %s WHERE taskid = %d" % (name, self.table))
-            if (status):
-                cur.execute("UPDATE %s SET colonne_2 = %s WHERE taskid = %d" % (status, self.table))
-            if (description):
-                cur.execute("UPDATE %s SET colonne_3 = %s WHERE taskid = %d" % (description, self.table))
+            cur.execute("UPDATE %s SET colonne_1 = 'valeur 1', colonne_2 = 'valeur 2', colonne_3 = 'valeur 3' WHERE taskid = %d" % (self.table))
             self.conn.commit()
             cur.close()
         except (Exception) as err:
@@ -149,7 +145,9 @@ class Task(object):
     def create_task(self, user_id, title, begin, end, status):
         try:
             if "None" in begin or begin == None:
-
+                begin = datetime.datetime.utcnow()
+            if "None" in end or end == None:
+                end = None
             cur = self.conn.cursor()
             cur.execute("INSERT INTO %s (title, begin, end, status) VALUES ('%s', '%d', '%d', '%s')"
                 % (self.table, title, begin, end, status))
