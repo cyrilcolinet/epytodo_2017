@@ -135,7 +135,12 @@ class Task(object):
     def update_task(self, task_id, name, status, description):
         try:
             cur = self.conn.cursor()
-            cur.execute("UPDATE %s SET colonne_1 = 'valeur 1', colonne_2 = 'valeur 2', colonne_3 = 'valeur 3' WHERE taskid = %d" % (self.table))
+            if (name):
+                cur.execute("UPDATE %s SET colonne_1 = 'valeur 1' WHERE taskid = %d" % (self.table))
+            if (status):
+                cur.execute("UPDATE %s SET colonne_2 = 'valeur 2' WHERE taskid = %d" % (self.table))
+            if (description):
+                cur.execute("UPDATE %s SET colonne_3 = 'valeur 3' WHERE taskid = %d" % (self.table))
             self.conn.commit()
             cur.close()
         except (Exception) as err:
