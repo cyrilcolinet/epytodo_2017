@@ -175,13 +175,13 @@ class Task(object):
     def create_task(self, user_id, title, begin, end, status):
         try:
             cur = self.conn.cursor()
-            if not "None" in begin or not begin == None:
+            if not begin == "None" or not begin == None:
                 print(begin)
                 format = '%Y-%m-%dT%H:%M:%S'
                 new_format = '%Y-%m-%d %H:%M:%S'
                 datetime.strptime(begin, format).strftime(new_format)
                 print(begin)
-            if not "None" in end or not end == None:
+            if not end == "None" or not end == None:
                 print(end)
                 format = '%Y-%m-%dT%H:%M:%S'
                 new_format = '%Y-%m-%d %H:%M:%S'
