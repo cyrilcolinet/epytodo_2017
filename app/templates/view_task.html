@@ -18,6 +18,7 @@
                 <div style="float:right;">
                     <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" class="btn btn-danger" role="button" aria-pressed="true"><i class="fa fa-trash"></i>&nbsp;Supprimer</a>
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target=".modal-update-task"><span class="fa fa-pencil-alt" aria-hidden="true"></span>&nbsp;Éditer</button>
+                    <form id="delete-task-form-{{ task[0] }}" action="{{ url_for('route_delete_task', task_id=task[0]) }}" method="post" style="display:none"></form>
                 </div>
                 <hr />
                 <table class="table">
