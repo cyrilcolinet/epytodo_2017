@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 ##
 ## EPITECH PROJECT, 2018
 ## epytodo_2017
