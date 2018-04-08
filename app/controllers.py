@@ -9,7 +9,7 @@ from app import *
 from app.models import *
 from app.api import *
 from flask import *
-from datetime import datetime
+import datetime
 
 class Controller(object):
 
@@ -74,7 +74,7 @@ class UserController(object):
     def view_user_all_task_action(self):
         tasks = self.api.task_get_all(session['id'])
         tasks = json.loads(tasks)
-        return render_template("profile_tasks.html", tasks_list=tasks['result'])
+        return render_template("profile_tasks.html", tasks_list=tasks['result'], current=datetime.datetime.strftime(datetime.datetime.utcnow(), "%A %d %b %Y, à %H:%S"))
 
     def view_user_special_task_action(self):
         return render_template("index.html")

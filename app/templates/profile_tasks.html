@@ -64,4 +64,36 @@
         </div>
     </div>
 </section>
+
+<!-- LOGIN MODAL -->
+<div class="modal fade modal-create-task" tabindex="-1" role="dialog" aria-labelledby="model_createètask_label">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4 style="text-align:center; text-transform: uppercase;">Créer une nouvelle tâche</h4>
+                <hr />
+                <form action="{{ url_for('route_create_task') }}" method="POST">
+                    <div class="form-group">
+                        <label for="title">Nom de la tâche :</label>
+                        <input type="text" id="title" required autofocus name="title" class="form-control" placeholder="Entrez un titre">
+                    </div>
+                    <div class="form-group">
+                        <label for="begin">Date de début :</label>
+                        <input type="text" id="begin" name="begin" class="form-control" aria-describedby="begin-help" placeholder="Entrez la date de début">
+                        <small id="begin-help" class="form-text text-muted">Valeur par défaut : {{ current|title }}</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="end">Date de fin :</label>
+                        <input type="text" id="end" name="end" class="form-control" aria-describedby="end-help" placeholder="Entrez la date de fin">
+                        <small id="end-help" class="form-text text-muted">Valeur par défaut : Non défini</small>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Créer !</button>
+                        <a href="#" onclick="$('.modal-create-task').modal('hide');" class="btn btn-dark" role="button" aria-pressed="true"><i class="fa fa-undo-alt"></i>&nbsp;Retour</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
