@@ -136,11 +136,11 @@ class Task(object):
         try:
             cur = self.conn.cursor()
             if (name):
-                cur.execute("UPDATE %s SET colonne_1 = 'valeur 1' WHERE taskid = %d" % (self.table))
+                cur.execute("UPDATE %s SET colonne_1 = %s WHERE taskid = %d" % (name, self.table))
             if (status):
-                cur.execute("UPDATE %s SET colonne_2 = 'valeur 2' WHERE taskid = %d" % (self.table))
+                cur.execute("UPDATE %s SET colonne_2 = %s WHERE taskid = %d" % (status, self.table))
             if (description):
-                cur.execute("UPDATE %s SET colonne_3 = 'valeur 3' WHERE taskid = %d" % (self.table))
+                cur.execute("UPDATE %s SET colonne_3 = %s WHERE taskid = %d" % (description, self.table))
             self.conn.commit()
             cur.close()
         except (Exception) as err:
