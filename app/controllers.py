@@ -100,8 +100,8 @@ class UserController(object):
 
     def create_task_action(self, request):
         title = request.form['title']
-        begin = None
-        end = None
+        begin = "None"
+        end = "None"
         status = request.form['status']
         result = self.api.task_create(title, begin, end, status)
         ##print(result)

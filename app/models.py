@@ -179,14 +179,14 @@ class Task(object):
     def create_task(self, user_id, title, begin, end, status):
         try:
             cur = self.conn.cursor()
-            if begin != "None" or begin != None:
+            if not begin == "None" and not begin == None:
                 print(begin)
                 format = '%Y-%m-%dT%H:%M:%S'
                 new_format = '%Y-%m-%d %H:%M:%S'
                 datetime.strptime(begin, format).strftime(new_format)
                 print(begin)
                 cur.execute("INSERT INTO %s `begin` VALUES '%d'" % (self.table, begin))
-            if end != "None" or end != None:
+            if not end == "None" and not end == None:
                 print(end)
                 format = '%Y-%m-%dT%H:%M:%S'
                 new_format = '%Y-%m-%d %H:%M:%S'
