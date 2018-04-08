@@ -117,7 +117,7 @@ class Task(object):
     def get_task_by_id(self, id):
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT * FROM %s WHERE task_id = %d"
+            cur.execute("SELECT * FROM %s WHERE task_id = '%d'"
                 % (self.table, id))
             task = list(cur.fetchall()[0])
             cur.close()
@@ -130,13 +130,13 @@ class Task(object):
         tasks = []
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT fk_task_id FROM %s WHERE fk_user_id = %d"
+            cur.execute("SELECT fk_task_id FROM %s WHERE fk_user_id = '%d'"
                 % (self.fk, user_id))
             ids = list(cur.fetchall())
             cur.close()
             for id in ids:
                 cur = self.conn.cursor()
-                cur.execute("SELECT * FROM %s WHERE task_id = %d"
+                cur.execute("SELECT * FROM %s WHERE task_id = '%d'"
                     % (self.table, id[0]))
                 task = list(cur.fetchall()[0])
                 tasks.append(task)
@@ -155,18 +155,22 @@ class Task(object):
                 new_format = '%Y-%m-%d %H:%M:%S'
                 datetime.strptime(end, format).strftime(new_format)
                 print(end)
-                cur.execute("UPDATE %s SET 'begin' = %d WHERE task_id = %d" % (begin, self.table))
+                cur.execute("UPDATE %s SET 'begin' = %d WHERE task_id = '%d'"
+                    % (begin, self.table))
             if not "None" in end or not end == None:
                 print(end)
                 format = '%Y-%m-%dT%H:%M:%S'
                 new_format = '%Y-%m-%d %H:%M:%S'
                 datetime.strptime(end, format).strftime(new_format)
                 print(end)
-                cur.execute("UPDATE %s SET 'end' = %d WHERE task_id = %d" % (end, self.table))
+                cur.execute("UPDATE %s SET 'end' = %d WHERE task_id = '%d'"
+                    % (end, self.table))
             if not "None" in name or not name == None:
-                cur.execute("UPDATE %s SET 'title' = %s WHERE task_id = %d" % (title, self.table))
+                cur.execute("UPDATE %s SET 'title' = %s WHERE task_id = '%d'"
+                    % (title, self.table))
             if not "None" in status or not status == None:
-                cur.execute("UPDATE %s SET 'status' = %s WHERE task_id = %d" % (status, self.table))
+                cur.execute("UPDATE %s SET 'status' = %s WHERE task_id = '%d'"
+                    % (status, self.table))
             self.conn.commit()
             cur.close()
         except (Exception) as err:
@@ -175,13 +179,13 @@ class Task(object):
     def create_task(self, user_id, title, begin, end, status):
         try:
             cur = self.conn.cursor()
-            if not begin == "None" or not begin == None:
+            if begin != "None" or begin != None:
                 print(begin)
                 format = '%Y-%m-%dT%H:%M:%S'
                 new_format = '%Y-%m-%d %H:%M:%S'
                 datetime.strptime(begin, format).strftime(new_format)
                 print(begin)
-            if not end == "None" or not end == None:
+            if end != "None" or end != None:
                 print(end)
                 format = '%Y-%m-%dT%H:%M:%S'
                 new_format = '%Y-%m-%d %H:%M:%S'
@@ -196,7 +200,7 @@ class Task(object):
                 return False
             cur = self.conn.cursor()
             cur.execute("INSERT INTO %d (fk_user_id, fk_task_id) VALUES (%d, %d)"
-                % (self.fk, int(user_id), int(id)))
+                % (self.fk, user_id, id))
             self.conn.commit()
             cur.close()
         except (Exception) as err:
