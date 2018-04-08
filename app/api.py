@@ -71,7 +71,7 @@ class API(object):
     def task_create(self, title, begin, end, status):
         ret = {}
         if session['username']:
-            if (title):
+            if not "None" in title or not title == None:
                 if self.task.create_task(session['id'], title, begin, end, status):
                     ret['result'] = "new task added"
                 else:
