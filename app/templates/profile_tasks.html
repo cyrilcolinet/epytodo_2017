@@ -74,14 +74,14 @@
                     <div class="form-group">
                         <label for="begin">Date de début :</label>
                         <div class="input-group">
-                            <input type="text" name="begin" value="{{ current_date|title }}" class="form-control" />
+                            <input type="text" name="begin" value="{{ current_date }}" class="form-control" />
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-calendar"></i>
                                 </span>
                             </div>
                         </div>
-                        <small id="begin-help" class="form-text text-muted">Valeur par défaut : {{ current_date|title }}</small>
+                        <small id="begin-help" class="form-text text-muted">Valeur par défaut : {{ current_date }}</small>
                     </div>
                     <div class="form-group">
                         <label for="end">Date de fin :</label>
