@@ -1,8 +1,8 @@
-{% extends "base.html" %} {% set title = "Mes Tâches" %} {% block content %}
+{% extends "base.html" %} {% set title = "Mes Taches" %} {% block content %}
 <header class="bg-profile-tasks text-white">
     <div class="container text-center">
         <h1 style="text-transform: uppercase;">{{ title }}</h1>
-        <p class="lead">Afficher et interagissez avec vos tâches</p>
+        <p class="lead">Afficher et interagissez avec vos taches</p>
     </div>
 </header>
 
@@ -11,9 +11,9 @@
         <div class="row">
             <div class="col-md-12">
                 {% include 'flash.html' %}
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-create-task"><span class="fa fa-plus" aria-hidden="true"></span>&nbsp;Nouvelle tâche</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-create-task"><span class="fa fa-plus" aria-hidden="true"></span>&nbsp;Nouvelle tache</button>
                 <hr />
-                <h3>Liste de mes tâches</h3>
+                <h3>Liste de mes taches</h3>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -44,7 +44,7 @@
                             <td align="center">
                                 <span class="badge badge-success"><i class="fa fa-check"></i></span>
                                 <span class="badge badge-info"><i class="fa fa-pencil-alt"></i></span>
-                                <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" data-toggle="tooltip" data-placement="top" title="Supprimer la tâche #{{ task[0] }}"><span class="badge badge-danger"><i class="fa fa-trash"></i></span></a>
+                                <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" data-toggle="tooltip" data-placement="top" title="Supprimer la tache #{{ task[0] }}"><span class="badge badge-danger"><i class="fa fa-trash"></i></span></a>
                                 <form id="delete-task-form-{{ task[0] }}" action="{{ url_for('route_delete_task', task_id=task[0]) }}" method="post" style="display:none"></form>
                             </td>
                         </tr>
@@ -61,17 +61,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <h4 style="text-align:center; text-transform: uppercase;">Créer une nouvelle tâche</h4>
+                <h4 style="text-align:center; text-transform: uppercase;">Créer une nouvelle tache</h4>
                 <hr />
                 <form action="{{ url_for('route_create_task') }}" method="POST">
                     <div class="form-group">
-                        <label for="title">Nom de la tâche :</label>
+                        <label for="title">Nom de la tache :</label>
                         <input type="text" id="title" required autofocus name="title" class="form-control" placeholder="Entrez un titre">
                     </div>
                     <div class="form-group">
                         <label for="begin">Date de début :</label>
                         <div class='input-group date' id='datetimepaicker-begin'>
-                            <input type="text" name="begin" value="{{ current }}" class="form-control" />
+                            <input type='text' name="begin" value="{{ current|title }}" class="form-control" />
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-calendar"></i>
@@ -83,7 +83,7 @@
                     <div class="form-group">
                         <label for="end">Date de fin :</label>
                         <div class='input-group date' id='datetimepaicker-end'>
-                            <input type="text" name="end" value="None" class="form-control" />
+                            <input type='text' name="end" value="None" class="form-control" />
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-calendar"></i>
