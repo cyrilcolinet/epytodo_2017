@@ -76,7 +76,7 @@ class UserController(object):
         tasks = self.api.task_get_all(session['id'])
         tasks = json.loads(tasks)
         utc = datetime.datetime.utcnow()
-        return render_template("profile_tasks.html", tasks_list=tasks['result'], utc=utc, current=datetime.datetime.strftime(utc, "%A %d %b %Y, à %H:%S"))
+        return render_template("profile_tasks.html", tasks_list=tasks['result'], utc=utc, current_date=str(datetime.datetime.strftime(utc, "%A %d %b %Y, à %H:%S")))
 
     def view_user_special_task_action(self):
         return render_template("index.html")
