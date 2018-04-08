@@ -31,10 +31,25 @@
             <div class="col-md-8">
                 {% include 'flash.html' %}
                 <h2>Bonjour <b>{{ session.username }}</b>,</h2>
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
-                <div style="margin-bottom: 60px;"></div>
-                <h3>Voici la progression de vos taches</h3>
+                <p class="lead">
+                    Bienvenue sur votre espace personnel.<br />Vous pouvez créer, éditer, supprimer, et voir vos tâches.
+                </p>
                 <a href="{{ url_for(('route_user_all_task')) }}" class="btn btn-primary" role="button" aria-pressed="true"><span class="fa fa-eye" aria-hidden="true"></span>&nbsp;Voir mes taches</a>
+                <hr />
+                <h3>Voici la progression de vos taches</h3>
+                <br />
+                <div class="progress" style="height: 20px;margin-bottom:10px;">
+                    {% set progression = (100 * tasks_wait) / tasks_count %}
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: {{ progression }}%" aria-valuenow="{{ progression }}" aria-valuemin="0" aria-valuemax="100"><b>{{ progression|int }}% des tâches en attente</b></div>
+                </div>
+                <div class="progress" style="height: 20px;margin-bottom:10px;">
+                    {% set progression = (100 * tasks_in_pr) / tasks_count %}
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ progression }}%" aria-valuenow="{{ progression }}" aria-valuemin="0" aria-valuemax="100"><b>{{ progression|int }}% des tâches en cours</b></div>
+                </div>
+                <div class="progress" style="height: 20px;">
+                    {% set progression = (100 * tasks_done) / tasks_count %}
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ progression }}%" aria-valuenow="{{ progression }}" aria-valuemin="0" aria-valuemax="100"><b>{{ progression|int }}% des tâches terminées</b></div>
+                </div>
             </div>
         </div>
     </div>
