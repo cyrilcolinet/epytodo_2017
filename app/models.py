@@ -114,6 +114,18 @@ class Task(object):
             print(err)
         return True
 
+    def get_task_by_id(self, id):
+        try:
+            cur = self.conn.cursor()
+            cur.execute("SELECT * FROM %s WHERE task_id = %d"
+                % (self.table, id))
+            task = list(cur.fetchall()[0])
+            cur.close()
+            return task
+        except (Exception) as err:
+            print(err)
+        return None
+
     def get_tasks_by_user_id(self, user_id):
         tasks = []
         try:
