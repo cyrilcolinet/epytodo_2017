@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 ##
 ## EPITECH PROJECT, 2018
 ## epytodo_2017
@@ -68,11 +68,13 @@ class API(object):
             ret['error'] = "you must be logged in"
         return json.dumps(ret)
 
-    def task_create(self, title):
+    def task_create(self, title, begin, end, status):
         ret = {}
         if session['username']:
-            self.task.create_task(session['id'], title)
-            ret['result'] = "new task added"
+            if self.task.create_task(session['id'], title, begin, end, status):
+                ret['result'] = "new task added"
+            else:
+                ret['error'] = "internal error"
         else:
             ret['error'] = "you must be logged in"
         return json.dumps(ret)

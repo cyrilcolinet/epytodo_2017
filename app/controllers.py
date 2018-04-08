@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 ##
 ## EPITECH PROJECT, 2018
 ## epytodo_2017
@@ -75,7 +75,8 @@ class UserController(object):
     def view_user_all_task_action(self):
         tasks = self.api.task_get_all(session['id'])
         tasks = json.loads(tasks)
-        return render_template("profile_tasks.html", tasks_list=tasks['result'], current=datetime.datetime.strftime(datetime.datetime.utcnow(), "%A %d %b %Y, à %H:%S"))
+        utc = datetime.datetime.utcnow()
+        return render_template("profile_tasks.html", tasks_list=tasks['result'], utc=utc, current=datetime.datetime.strftime(utc, "%A %d %b %Y, à %H:%S"))
 
     def view_user_special_task_action(self):
         return render_template("index.html")
@@ -91,9 +92,12 @@ class UserController(object):
 
     def create_task_action(self, request):
         title = request.form['title']
-        result = self.api.task_create(title)
-        print(result)
-        flash(result)
+        begin = request.form['begin']
+        end = request.form['end']
+        status = request.form['status']
+        result = self.api.task_create(title, begin, end, status)
+        ##print(result)
+        flash(json.loads(result))
         return redirect(url_for('route_user_all_task'))
 
     def delete_task_action(self, request, id):

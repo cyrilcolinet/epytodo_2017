@@ -71,7 +71,7 @@
                     <div class="form-group">
                         <label for="begin">Date de début :</label>
                         <div class='input-group date' id='datetimepaicker-begin'>
-                            <input type='text' class="form-control" />
+                            <input type='text' name="begin" value="{{ current|title }}" class="form-control" />
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-calendar"></i>
@@ -82,7 +82,14 @@
                     </div>
                     <div class="form-group">
                         <label for="end">Date de fin :</label>
-                        <input type="text" id="end" name="end" class="form-control" aria-describedby="end-help" placeholder="Entrez la date de fin">
+                        <div class='input-group date' id='datetimepaicker-end'>
+                            <input type='text' name="end" value="None" class="form-control" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
                         <small id="end-help" class="form-text text-muted">Valeur par défaut : Non défini</small>
                     </div>
                     <div class="form-group">

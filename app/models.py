@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 ##
 ## EPITECH PROJECT, 2018
 ## epytodo_2017
@@ -141,15 +141,33 @@ class Task(object):
         except (Exception) as err:
             print(err)
 
-    def create_task(self, user_id, name):
+    def create_task(self, user_id, title, begin, end, status):
         try:
             cur = self.conn.cursor()
-            cur.execute("INSERT INTO %s (id, title) VALUES ('%s', '%s')"
-                % (self.table, user_id, name))
+            print("INSERT INTO %s (title, begin, end, status) VALUES (`%s`, `%s`, `%s`, `%s`)"
+                % (self.table, title, begin, end, status))
+            cur.execute("INSERT INTO %s (title, begin, end, status) VALUES (`%s`, `%s`, `%s`, `%s`)"
+                % (self.table, title, begin, end, status))
+            self.conn.commit()
+            cur.close()
+            cur = self.conn.cursor()
+            print("SELECT task_id FROM %s WHERE `title` = `%s` AND `begin` = `%s` AND `end` = `%s` AND `status` = `%s`"
+                % (self.table, title, begin, end, status))
+            cur.execute("SELECT task_id FROM %s WHERE `title` = `%s` AND `begin` = `%s` AND `end` = `%s` AND `status` = `%s`"
+                % (self.table, title, begin, end, status))
+            id = cur.fetchone()[0]
+            if not id:
+                return False
+            cur.close()
+            cur = self.conn.cursor()
+            cur.execute("INSERT INTO %d (fk_user_id, fk_task_id) VALUES (%d, %d)"
+                % (self.fk, user_id, id))
             self.conn.commit()
             cur.close()
         except (Exception) as err:
             print(err)
+            return False
+        return True
 
     def delete_task(self, id):
         id = int(id)
