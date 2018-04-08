@@ -99,17 +99,11 @@ class API(object):
     def task_get_by_id(self, task_id):
         ret = {}
         if self.task.id_exist(task_id):
-            result = self.task.get_task_by_id(task_id)
-            if result == None:
+            res = self.task.get_task_by_id(task_id)
+            if res == None:
                 ret['error'] = "internal error"
             else:
-                if result[2] != None:
-                    time = datetime.datetime.strftime(result[2], "%A %d %b %Y, à %H:%S")
-                    result[2] = time
-                if result[3] != None:
-                    time = datetime.datetime.strftime(result[3], "%A %d %b %Y, à %H:%S")
-                    result[3] = time
-                ret['result'] = result
+                ret['result'] = res
         else:
             ret['error'] = "internal error"
         return json.dumps(ret)
