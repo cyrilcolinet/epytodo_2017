@@ -35,6 +35,7 @@
                     Bienvenue sur votre espace personnel.<br />Vous pouvez créer, éditer, supprimer, et voir vos tâches.
                 </p>
                 <a href="{{ url_for(('route_user_all_task')) }}" class="btn btn-primary" role="button" aria-pressed="true"><span class="fa fa-eye" aria-hidden="true"></span>&nbsp;Voir mes taches</a>
+                {% if tasks_count > 0 %}
                 <hr />
                 <h3>Voici la progression de vos taches</h3>
                 <br />
@@ -50,6 +51,7 @@
                     {% set progression = (100 * tasks_done) / tasks_count %}
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ progression }}%" aria-valuenow="{{ progression }}" aria-valuemin="0" aria-valuemax="100"><b>{{ progression|int }}% des tâches terminées</b></div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
