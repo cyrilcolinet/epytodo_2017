@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% set page_title = task[1] %}
+
+{% block content %}
+<header class="bg-profile-tasks text-white">
+    <div class="container text-center">
+        <h1 style="text-transform: uppercase;">{{ page_title }}</h1>
+        <p class="lead">Afficher et interagissez avec vos taches</p>
+    </div>
+</header>
+
+<section id="services" class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% include 'flash.html' %}
+                <a href="{{ url_for(('route_user_all_task')) }}" class="btn btn-dark" role="button" aria-pressed="true"><i class="fa fa-undo-alt"></i>&nbsp;Retour</a>
+                <div style="float:right;">
+                    <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" class="btn btn-danger" role="button" aria-pressed="true"><i class="fa fa-trash"></i>&nbsp;Supprimer</a>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target=".modal-update-task"><span class="fa fa-pencil-alt" aria-hidden="true"></span>&nbsp;Éditer</button>
+                </div>
+                <hr />
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Démarée le</th>
+                            <th scope="col">Terminée le</th>
+                            <th scope="col" style="text-align:center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{ task[0] }}</th>
+                            <td>{{ task[1] }}</td>
+                            <td>
+                                {% if "not started" in task[4] %}
+                                <span class="badge badge-danger">En attente</span>
+                                {% elif "in progress" in task[4] %}
+                                <span class="badge badge-warning">En cours...</span>
+                                {% else %}
+                                <span class="badge badge-success">Terminée</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ task[2]|title }}</td>
+                            <td>
+                                {% if task[3] == None %}
+                                <b>Non défini</b> {% else %} {{ task[3]|title }} {% endif %}
+                            </td>
+                            <td align="center">
+                                <span class="badge badge-success"><i class="fa fa-check"></i></span>
+                                <span class="badge badge-info"><i class="fa fa-pencil-alt"></i></span>
+                                <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" data-toggle="tooltip" data-placement="top" title="Supprimer la tache #{{ task[0] }}"><span class="badge badge-danger"><i class="fa fa-trash"></i></span></a>
+                                <form id="delete-task-form-{{ task[0] }}" action="{{ url_for('route_delete_task', task_id=task[0]) }}" method="post" style="display:none"></form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
