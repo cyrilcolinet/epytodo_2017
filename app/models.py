@@ -201,7 +201,7 @@ class Task(object):
             if not id:
                 return False
             cur = self.conn.cursor()
-            cur.execute("INSERT INTO %d (fk_user_id, fk_task_id) VALUES (%d, %d)"
+            cur.execute("INSERT INTO %s (fk_user_id, fk_task_id) VALUES (%d, %d)"
                 % (self.fk, user_id, id))
             self.conn.commit()
             cur.close()
