@@ -56,11 +56,11 @@ class API(object):
         ret['result'] = "signout successful"
         return json.dumps(ret)
 
-    def task_update(self, id, name, status, description):
+    def task_update(self, id, title, status, begin, end):
         ret = {}
         if session['username']:
             if self.task.id_exist(id):
-                self.task.update_task(id, name, status, description)
+                self.task.update_task(id, title, status, begin, end)
                 ret['result'] = "update done"
             else:
                 ret['error'] = "task id does not exist"

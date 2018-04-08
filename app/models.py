@@ -134,15 +134,27 @@ class Task(object):
             print(err)
         return tasks
 
-    def update_task(self, task_id, name, status, description):
+    def update_task(self, task_id, title, status, begin, end):
         try:
             cur = self.conn.cursor()
-            if (name):
-                cur.execute("UPDATE %s SET colonne_1 = %s WHERE taskid = %d" % (name, self.table))
-            if (status):
-                cur.execute("UPDATE %s SET colonne_2 = %s WHERE taskid = %d" % (status, self.table))
-            if (description):
-                cur.execute("UPDATE %s SET colonne_3 = %s WHERE taskid = %d" % (description, self.table))
+            if not "None" in end or not end == None:
+                print(end)
+                format = '%Y-%m-%dT%H:%M:%S'
+                new_format = '%Y-%m-%d %H:%M:%S'
+                datetime.strptime(end, format).strftime(new_format)
+                print(end)
+                cur.execute("UPDATE %s SET 'begin' = %d WHERE taskid = %d" % (begin, self.table))
+            if not "None" in end or not end == None:
+                print(end)
+                format = '%Y-%m-%dT%H:%M:%S'
+                new_format = '%Y-%m-%d %H:%M:%S'
+                datetime.strptime(end, format).strftime(new_format)
+                print(end)
+                cur.execute("UPDATE %s SET 'end' = %d WHERE taskid = %d" % (end, self.table))
+            if not "None" in name or not name == None:
+                cur.execute("UPDATE %s SET 'title' = %s WHERE taskid = %d" % (title, self.table))
+            if not "None" in status or not status == None:
+                cur.execute("UPDATE %s SET 'status' = %s WHERE taskid = %d" % (status, self.table))
             self.conn.commit()
             cur.close()
         except (Exception) as err:
