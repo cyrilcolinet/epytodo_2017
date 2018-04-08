@@ -54,7 +54,6 @@
                             </td>
                             <td align="center">
                                 <span class="badge badge-success"><i class="fa fa-check"></i></span>
-                                <span class="badge badge-info"><i class="fa fa-pencil-alt"></i></span>
                                 <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" data-toggle="tooltip" data-placement="top" title="Supprimer la tache #{{ task[0] }}"><span class="badge badge-danger"><i class="fa fa-trash"></i></span></a>
                                 <form id="delete-task-form-{{ task[0] }}" action="{{ url_for('route_delete_task', task_id=task[0]) }}" method="post" style="display:none"></form>
                             </td>
