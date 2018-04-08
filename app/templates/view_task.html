@@ -47,7 +47,10 @@
                             <td>{{ task[2]|title }}</td>
                             <td>
                                 {% if task[3] == None %}
-                                <b>Non défini</b> {% else %} {{ task[3]|title }} {% endif %}
+                                <b>Non défini</b>
+                                {% else %}
+                                {{ task[3]|title }}
+                                {% endif %}
                             </td>
                             <td align="center">
                                 <span class="badge badge-success"><i class="fa fa-check"></i></span>
