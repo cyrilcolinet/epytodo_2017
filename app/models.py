@@ -175,9 +175,6 @@ class Task(object):
     def create_task(self, user_id, title, begin, end, status):
         try:
             cur = self.conn.cursor()
-<<<<<<< HEAD
-            cur.execute("INSERT INTO %s (`title`, `begin`, `end`, `status`) VALUES ('%s', '%d', '%d', '%s')"
-=======
             if not begin == "None" or not begin == None:
                 print(begin)
                 format = '%Y-%m-%dT%H:%M:%S'
@@ -191,7 +188,6 @@ class Task(object):
                 datetime.strptime(end, format).strftime(new_format)
                 print(end)
             cur.execute("INSERT INTO %s (`title`, `begin`, `end`, `status`) VALUES ('%s', %d, %d, '%s')"
->>>>>>> d43f7d07b553140c8f6c0c032c07add44095379d
                 % (self.table, title, begin, end, status))
             self.conn.commit()
             id = cur.lastrowid
