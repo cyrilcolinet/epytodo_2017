@@ -170,11 +170,13 @@ class Task(object):
                 cur.close()
                 cur = self.conn.cursor()
             if not "None" in name and not name == None:
-                cur.execute("UPDATE %s SET 'title' = %s WHERE task_id = '%d'" % (title, self.table))
+                cur.execute("UPDATE %s SET 'title' = %s WHERE task_id = '%d'"
+                    % (title, self.table))
                 cur.close()
                 cur = self.conn.cursor()
             if not "None" in status and not status == None:
-                cur.execute("UPDATE %s SET 'status' = %s WHERE task_id = '%d'" % (status, self.table))
+                cur.execute("UPDATE %s SET 'status' = %s WHERE task_id = '%d'"
+                    % (status, self.table))
             self.conn.commit()
             cur.close()
         except (Exception) as err:
