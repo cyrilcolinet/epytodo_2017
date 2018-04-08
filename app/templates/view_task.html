@@ -28,7 +28,6 @@
                             <th scope="col">Status</th>
                             <th scope="col">Démarée le</th>
                             <th scope="col">Terminée le</th>
-                            <th scope="col" style="text-align:center;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,11 +50,6 @@
                                 {% else %}
                                 {{ task[3]|title }}
                                 {% endif %}
-                            </td>
-                            <td align="center">
-                                <span class="badge badge-success"><i class="fa fa-check"></i></span>
-                                <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" data-toggle="tooltip" data-placement="top" title="Supprimer la tache #{{ task[0] }}"><span class="badge badge-danger"><i class="fa fa-trash"></i></span></a>
-                                <form id="delete-task-form-{{ task[0] }}" action="{{ url_for('route_delete_task', task_id=task[0]) }}" method="post" style="display:none"></form>
                             </td>
                         </tr>
                     </tbody>
