@@ -9,6 +9,7 @@
 from app import *
 from flask import *
 import hashlib
+import time
 from datetime import datetime
 
 ## User Model
@@ -153,9 +154,8 @@ class Task(object):
             if "None" in begin or begin == None:
                 print(title)
             if "None" in end or end == None:
-                date = datetime.now()
+                date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 print(date)
-                print("tanpi")
             cur.execute("INSERT INTO %s (title, begin, end, status) VALUES ('%s', '%d', '%d', '%s')"
                 % (self.table, title, begin, end, status))
             self.conn.commit()
