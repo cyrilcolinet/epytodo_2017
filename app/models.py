@@ -155,7 +155,8 @@ class Task(object):
                 new_format = '%Y-%m-%d %H:%M:%S'
                 datetime.strptime(end, format).strftime(new_format)
                 print(end)
-                cur.execute("UPDATE %s SET 'begin' = %d WHERE task_id = '%d'" % (begin, self.table))
+                cur.execute("UPDATE %s SET 'begin' = %d WHERE task_id = '%d'"
+                    % (begin, self.table))
                 cur.close()
                 cur = self.conn.cursor()
             if not "None" in end and not end == None:
@@ -164,15 +165,18 @@ class Task(object):
                 new_format = '%Y-%m-%d %H:%M:%S'
                 datetime.strptime(end, format).strftime(new_format)
                 print(end)
-                cur.execute("UPDATE %s SET 'end' = %d WHERE task_id = '%d'" % (end, self.table))
+                cur.execute("UPDATE %s SET 'end' = %d WHERE task_id = '%d'"
+                    % (end, self.table))
                 cur.close()
                 cur = self.conn.cursor()
             if not "None" in name or not name == None:
-                cur.execute("UPDATE %s SET 'title' = %s WHERE task_id = '%d'" % (title, self.table))
+                cur.execute("UPDATE %s SET 'title' = %s WHERE task_id = '%d'"
+                    % (title, self.table))
                 cur.close()
                 cur = self.conn.cursor()
             if not "None" in status or not status == None:
-                cur.execute("UPDATE %s SET 'status' = %s WHERE task_id = '%d'" % (status, self.table))
+                cur.execute("UPDATE %s SET 'status' = %s WHERE task_id = '%d'"
+                    % (status, self.table))
             self.conn.commit()
             cur.close()
         except (Exception) as err:
@@ -187,7 +191,8 @@ class Task(object):
                 new_format = '%Y-%m-%d %H:%M:%S'
                 datetime.strptime(begin, format).strftime(new_format)
                 print(begin)
-                cur.execute("INSERT INTO %s `begin` VALUES '%d'" % (self.table, begin))
+                cur.execute("INSERT INTO %s `begin` VALUES '%d'"
+                    % (self.table, begin))
                 cur.close()
                 cur = self.conn.cursor()
             if not end == "None" and not end == None:
@@ -196,7 +201,8 @@ class Task(object):
                 new_format = '%Y-%m-%d %H:%M:%S'
                 datetime.strptime(end, format).strftime(new_format)
                 print(end)
-                cur.execute("INSERT INTO %s `end` VALUES '%d'" % (self.table, end))
+                cur.execute("INSERT INTO %s `end` VALUES '%d'"
+                    % (self.table, end))
                 cur.close()
                 cur = self.conn.cursor()
             cur.execute("INSERT INTO %s (`title`, `status`) VALUES ('%s', '%s')"
