@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 ##
 ## EPITECH PROJECT, 2018
 ## epytodo_2017
@@ -44,7 +44,7 @@ def route_user_all_task():
 @app.route('/user/task/<int:task_id>', methods = ['GET'])
 def route_user_special_task(task_id):
     controller = UserController(app, get_connection())
-    return controller.view_user_special_task_action(id)
+    return controller.view_user_special_task_action(task_id)
 
 @app.route('/user/task/<int:task_id>', methods = ['POST'])
 def route_update_task(task_id):

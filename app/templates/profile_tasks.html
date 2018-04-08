@@ -32,7 +32,7 @@
                         {% for task in tasks_list %}
                         <tr>
                             <th scope="row">{{ task[0] }}</th>
-                            <td>{{ task[1] }}</td>
+                            <td><a href="{{ url_for('route_user_special_task', task_id=task[0]) }}" title="Voir la tâche">{{ task[1] }}</a></td>
                             <td>
                                 {% if "not started" in task[4] %}
                                 <span class="badge badge-danger">En attente</span> {% elif "in progress" in task[4] %}

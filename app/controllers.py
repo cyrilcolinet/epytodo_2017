@@ -78,8 +78,15 @@ class UserController(object):
         utc = datetime.datetime.utcnow()
         return render_template("profile_tasks.html", tasks_list=tasks['result'], utc=utc, current_date=str(datetime.datetime.strftime(utc, "%A %d %b %Y, à %H:%S")))
 
-    def view_user_special_task_action(self):
-        return render_template("index.html")
+    def view_user_special_task_action(self, task_id):
+        task = None
+        result = self.api.task_get_by_id(task_id)
+        result = json.loads(result)
+        if 'error' in result:
+            flash(result)
+        else:
+            task = result['result']
+        return render_template("view_task.html", task=task)
 
     def update_task_action(self, request, task_id):
         name = request.form['name']

@@ -96,6 +96,18 @@ class API(object):
             ret['error'] = "you must be logged in"
         return json.dumps(ret)
 
+    def task_get_by_id(self, task_id):
+        ret = {}
+        if self.task.id_exist(task_id):
+            res = self.task.get_task_by_id(task_id)
+            if res == None:
+                ret['error'] = "internal error"
+            else:
+                ret['result'] = res
+        else:
+            ret['error'] = "internal error"
+        return json.dumps(ret)
+
     def task_get_all(self, user_id):
         ret = {}
         if self.user.exists_id(user_id):
