@@ -89,11 +89,12 @@ class UserController(object):
         return render_template("view_task.html", task=task)
 
     def update_task_action(self, request, task_id):
-        name = request.form['name']
+        title = request.form['title']
         status = request.form['status']
-        description = request.form['description']
+        begin = request.form['begin']
+        end = request.form['end']
         print(request.form)
-        ##result = self.api.task_update(task_id, name, status, description)
+        ##result = self.api.task_update(task_id, title, status, begin, end)
         ##flash(json.loads(result))
         return redirect(url_for('route_user_all_task'))
 
