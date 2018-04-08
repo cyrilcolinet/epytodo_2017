@@ -148,8 +148,10 @@ class Task(object):
 
     def create_task(self, user_id, title, begin, end, status):
         try:
+            if "None" in begin or begin == None:
+
             cur = self.conn.cursor()
-            cur.execute("INSERT INTO %s (title, begin, end, status) VALUES ('%s', '%s', '%s', '%s')"
+            cur.execute("INSERT INTO %s (title, begin, end, status) VALUES ('%s', '%d', '%d', '%s')"
                 % (self.table, title, begin, end, status))
             self.conn.commit()
             id = cur.lastrowid
