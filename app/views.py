@@ -40,13 +40,13 @@ def route_user_all_task():
     controller = UserController(app, get_connection())
     return controller.view_user_all_task_action()
 
-@app.route('/user/task/id', methods = ['GET'])
-def route_user_special_task(id):
+@app.route('/user/task/<int:task_id>', methods = ['GET'])
+def route_user_special_task(task_id):
     controller = UserController(app, get_connection())
     return controller.view_user_special_task_action(id)
 
-@app.route('/user/task/id', methods = ['POST'])
-def route_update_task(id):
+@app.route('/user/task/<int:task_id>', methods = ['POST'])
+def route_update_task(task_id):
     controller = UserController(app, get_connection())
     return controller.update_task_action(request, id)
 
@@ -55,7 +55,7 @@ def route_create_task():
     controller = UserController(app, get_connection())
     return controller.create_task_action(request)
 
-@app.route('/user/task/del/id', methods = ['POST'])
-def route_delete_task(id):
+@app.route('/user/task/del/<int:task_id>', methods = ['POST'])
+def route_delete_task(task_id):
     controller = UserController(app, get_connection())
-    return controller.delete_task_action(request, id)
+    return controller.delete_task_action(request, task_id)

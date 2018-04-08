@@ -54,7 +54,8 @@
                             </td>
                             <td align="center">
                                 <span class="label label-default"><i class="fa fa-pencil-alt"></i></span>
-                                <span class="label label-danger"><i class="fa fa-trash"></i></span>
+                                <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" title="Supprimer la tâche #{{ task[0] }}"><span class="label label-danger"><i class="fa fa-trash"></i></span></a>
+                                <form id="delete-task-form-{{ task[0] }}" action="{{ url_for('route_delete_task', task_id=task[0]) }}" method="post" style="display:none"></form>
                             </td>
                         </tr>
                         {% endfor %}
