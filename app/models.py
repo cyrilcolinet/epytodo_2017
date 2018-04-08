@@ -155,7 +155,7 @@ class Task(object):
                 print(begin)
                 format = '%Y-%m-%dT%H:%M:%S'
                 new_format = '%Y-%m-%d %H:%M:%S'
-                datetime.strptime(end, format).strftime(new_format)
+                datetime.strptime(begin, format).strftime(new_format)
                 print(begin)
             if not "None" in end or not end == None:
                 print(end)
