@@ -84,7 +84,7 @@ class UserController(object):
         status = request.form['status']
         description = request.form['description']
         result = self.api.task_update(task_id, name, status, description)
-        flash(result)
+        flash(json.loads(result))
         return redirect(url_for('route_user_all_task'))
 
     def create_task_action(self, request):
@@ -96,6 +96,5 @@ class UserController(object):
 
     def delete_task_action(self, request, id):
         result = self.api.task_delete(id)
-        print(result)
-        flash(result)
+        flash(json.loads(result))
         return redirect(url_for('route_user_all_task'))

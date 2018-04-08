@@ -80,8 +80,10 @@ class API(object):
         ret = {}
         if session['username']:
             if self.task.id_exist(id):
-                self.task.delete_task(id)
-                ret['result'] = "deleted"
+                if self.task.delete_task(id):
+                    ret['result'] = "deleted"
+                else:
+                    ret['error'] = 'internal error'
             else:
                 ret['error'] = "task id does not exist"
         else:

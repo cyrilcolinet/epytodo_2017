@@ -21,7 +21,8 @@ class User(object):
     def exists(self, username):
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT COUNT(1) FROM %s WHERE username = '%s'" % (self.table, username))
+            cur.execute("SELECT COUNT(1) FROM %s WHERE username = '%s'"
+                % (self.table, username))
             exists = cur.fetchone()[0]
             cur.close()
             return True if exists == 1 else False
@@ -33,7 +34,8 @@ class User(object):
     def exists_id(self, user_id):
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT COUNT(1) FROM %s WHERE user_id = '%s'" % (self.table, user_id))
+            cur.execute("SELECT COUNT(1) FROM %s WHERE user_id = '%s'"
+                % (self.table, user_id))
             exists = cur.fetchone()[0]
             cur.close()
             return True if exists == 1 else False
@@ -60,7 +62,8 @@ class User(object):
     def get_id(self, username):
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT user_id FROM %s WHERE username = '%s'" % (self.table, username))
+            cur.execute("SELECT user_id FROM %s WHERE username = '%s'"
+                % (self.table, username))
             id = cur.fetchone()[0]
             cur.close()
             return id
@@ -72,7 +75,8 @@ class User(object):
     def check_password(self, username, password):
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT password FROM %s WHERE username = '%s'" % (self.table, username))
+            cur.execute("SELECT password FROM %s WHERE username = '%s'"
+                % (self.table, username))
             pwd = cur.fetchone()[0]
             cur.close()
             salt = self.app.config['PASSWORD_SALT']
@@ -98,7 +102,8 @@ class Task(object):
     def id_exist(self, id):
         try:
             cur = self.conn.cursor(id)
-            cur.execute("SELECT COUNT(1) FROM %s WHERE task_id = '%d'" % (self.table, id))
+            cur.execute("SELECT COUNT(1) FROM %s WHERE task_id = '%d'"
+                % (self.table, id))
             exists = cur.fetchone()[0]
             cur.close()
             return True if exists == 1 else False
@@ -110,12 +115,14 @@ class Task(object):
         tasks = []
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT fk_task_id FROM %s WHERE fk_user_id = %d" % (self.fk, user_id))
+            cur.execute("SELECT fk_task_id FROM %s WHERE fk_user_id = %d"
+                % (self.fk, user_id))
             ids = list(cur.fetchall())
             cur.close()
             for id in ids:
                 cur = self.conn.cursor()
-                cur.execute("SELECT * FROM %s WHERE task_id = %d" % (self.table, id[0]))
+                cur.execute("SELECT * FROM %s WHERE task_id = %d"
+                    % (self.table, id[0]))
                 task = list(cur.fetchall()[0])
                 tasks.append(task)
                 cur.close()
@@ -144,11 +151,26 @@ class Task(object):
             print(err)
 
     def delete_task(self, id):
+        id = int(id)
         try:
             cur = self.conn.cursor()
-            cur.execute("DELETE fk_task_id FROM %s WHERE fk_user_id = %d" % (self.fk, id))
-            cur.execute("DELETE FROM %s WHERE task_id = %d" % (self.table, id))
+            cur.execute("SELECT COUNT(1) FROM %s WHERE fk_task_id = %d AND fk_user_id = %d"
+                % (self.fk, id, session['id']))
+            res = cur.fetchone()[0]
+            cur.close()
+            if res != 1:
+                return False
+            cur = self.conn.cursor()
+            cur.execute("DELETE FROM %s WHERE fk_task_id = %d AND fk_user_id = %d"
+                % (self.fk, id, session['id']))
+            self.conn.commit()
+            cur.close()
+            cur = self.conn.cursor()
+            cur.execute("DELETE FROM %s WHERE task_id = %d"
+                % (self.table, id))
             self.conn.commit()
             cur.close()
         except (Exception) as err:
             print(err)
+            return False
+        return True

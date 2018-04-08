@@ -12,13 +12,11 @@
 <section id="services" class="bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
-                <h3>Actions</h3>
-                <hr />
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-create-task"><span class="fa fa-plus" aria-hidden="true"></span>&nbsp;Nouvelle tâche</button>
-            </div>
-            <div class="col-md-10">
+            <div class="col-md-12">
                 {% include 'flash.html' %}
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-create-task"><span class="fa fa-plus" aria-hidden="true"></span>&nbsp;Nouvelle tâche</button>
+                <hr />
+                <h3>Liste de mes tâches</h3>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -53,7 +51,8 @@
                                 {% endif %}
                             </td>
                             <td align="center">
-                                <span class="label label-default"><i class="fa fa-pencil-alt"></i></span>
+                                <span class="label label-success"><i class="fa fa-check"></i></span>
+                                <span class="label label-info"><i class="fa fa-pencil-alt"></i></span>
                                 <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" title="Supprimer la tâche #{{ task[0] }}"><span class="label label-danger"><i class="fa fa-trash"></i></span></a>
                                 <form id="delete-task-form-{{ task[0] }}" action="{{ url_for('route_delete_task', task_id=task[0]) }}" method="post" style="display:none"></form>
                             </td>
