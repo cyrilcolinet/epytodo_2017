@@ -28,6 +28,11 @@ header, .bg-profile {
     background-size: 100%;
 }
 
+header, .bg-profile-tasks {
+    background-image: url("/static/img/profile-tasks-header.jpg");
+    background-size: 100%;
+}
+
 .panel {
     margin-bottom: 20px;
     background-color: #fff;

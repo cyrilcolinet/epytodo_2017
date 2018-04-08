@@ -7,11 +7,13 @@
 
 from app import *
 
+## Index routes
 @app.route('/', methods = ['GET'])
 def route_home():
     controller = Controller(app, get_connection())
     return controller.index_action()
 
+## Auth system
 @app.route('/register', methods = ['POST'])
 def route_register():
     controller = AuthController(app, get_connection())
@@ -27,6 +29,7 @@ def route_signout():
     controller = AuthController(app, get_connection())
     return controller.signout_action(request)
 
+## User routes
 @app.route('/user', methods = ['GET'])
 def route_user_info():
     controller = UserController(app, get_connection())

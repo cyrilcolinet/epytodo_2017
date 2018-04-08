@@ -69,18 +69,12 @@ class UserController(object):
                 tasks_in_pr += 1
             elif task[4] == "done":
                 tasks_done += 1
-
-        print(tasks_done)
-        print(tasks_wait)
-        print(tasks_in_pr)
-
-        return render_template("profile.html", tasks_done=tasks_done,
-                                               tasks_in_pr=tasks_in_pr,
-                                               tasks_wait=tasks_wait,
-                                               tasks_count=count)
+        return render_template("profile.html", tasks_done=tasks_done, tasks_in_pr=tasks_in_pr, tasks_wait=tasks_wait, tasks_count=count)
 
     def view_user_all_task_action(self):
-        return render_template("user_task.html")
+        tasks = self.api.task_get_all(session['id'])
+        tasks = json.loads(tasks)
+        return render_template("profile_tasks.html", tasks_list=tasks['result'])
 
     def view_user_special_task_action(self):
         return render_template("index.html")

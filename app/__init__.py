@@ -6,6 +6,7 @@
 ##
 
 import os
+import locale
 from app.controllers import *
 from app.connection import *
 from flask import *
@@ -14,6 +15,7 @@ import pymysql as sql
 # Configure flask module
 app = Flask(__name__)
 app.config.from_object('config')
+locale.setlocale(locale.LC_TIME, "")
 
 def get_application():
     return app
