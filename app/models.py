@@ -154,8 +154,11 @@ class Task(object):
             if "None" in begin or begin == None:
                 print(title)
             if "None" in end or end == None:
-                date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                print(date)
+                print(end)
+                format = '%Y-%m-%dT%H:%M:%S'
+                new_format = '%Y-%m-%d %H:%M:%S'
+                datetime.strptime(end, format).strftime(new_format)
+                print(end)
             cur.execute("INSERT INTO %s (title, begin, end, status) VALUES ('%s', '%d', '%d', '%s')"
                 % (self.table, title, begin, end, status))
             self.conn.commit()
