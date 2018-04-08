@@ -1,7 +1,4 @@
-{% extends "base.html" %}
-{% set title = "Mes Tâches" %}
-
-{% block content %}
+{% extends "base.html" %} {% set title = "Mes Tâches" %} {% block content %}
 <header class="bg-profile-tasks text-white">
     <div class="container text-center">
         <h1 style="text-transform: uppercase;">{{ title }}</h1>
@@ -35,25 +32,19 @@
                             <td>{{ task[1] }}</td>
                             <td>
                                 {% if "not started" in task[4] %}
-                                <span class="label label-danger">En attente</span>
-                                {% elif "in progress" in  task[4] %}
-                                <span class="label label-warning">En cours...</span>
-                                {% else %}
-                                <span class="label label-success">Terminée</span>
-                                {% endif %}
+                                <span class="badge badge-danger">En attente</span> {% elif "in progress" in task[4] %}
+                                <span class="badge badge-warning">En cours...</span> {% else %}
+                                <span class="badge badge-success">Terminée</span> {% endif %}
                             </td>
                             <td>{{ task[2]|title }}</td>
                             <td>
                                 {% if task[3] == None %}
-                                <b>Non défini</b>
-                                {% else %}
-                                {{ task[3]|title }}
-                                {% endif %}
+                                <b>Non défini</b> {% else %} {{ task[3]|title }} {% endif %}
                             </td>
                             <td align="center">
-                                <span class="label label-success"><i class="fa fa-check"></i></span>
-                                <span class="label label-info"><i class="fa fa-pencil-alt"></i></span>
-                                <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" title="Supprimer la tâche #{{ task[0] }}"><span class="label label-danger"><i class="fa fa-trash"></i></span></a>
+                                <span class="badge badge-success"><i class="fa fa-check"></i></span>
+                                <span class="badge badge-info"><i class="fa fa-pencil-alt"></i></span>
+                                <a href="{{ url_for('route_delete_task', task_id=task[0]) }}" onclick="event.preventDefault(); document.getElementById('delete-task-form-{{ task[0] }}').submit();" data-toggle="tooltip" data-placement="top" title="Supprimer la tâche #{{ task[0] }}"><span class="badge badge-danger"><i class="fa fa-trash"></i></span></a>
                                 <form id="delete-task-form-{{ task[0] }}" action="{{ url_for('route_delete_task', task_id=task[0]) }}" method="post" style="display:none"></form>
                             </td>
                         </tr>
@@ -65,7 +56,7 @@
     </div>
 </section>
 
-<!-- LOGIN MODAL -->
+<!-- CREATE TASK MODAL -->
 <div class="modal fade modal-create-task" tabindex="-1" role="dialog" aria-labelledby="model_createètask_label">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -79,13 +70,43 @@
                     </div>
                     <div class="form-group">
                         <label for="begin">Date de début :</label>
-                        <input type="text" id="begin" name="begin" class="form-control" aria-describedby="begin-help" placeholder="Entrez la date de début">
+                        <div class='input-group date' id='datetimepaicker-begin'>
+                            <input type='text' class="form-control" />
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
                         <small id="begin-help" class="form-text text-muted">Valeur par défaut : {{ current|title }}</small>
                     </div>
                     <div class="form-group">
                         <label for="end">Date de fin :</label>
                         <input type="text" id="end" name="end" class="form-control" aria-describedby="end-help" placeholder="Entrez la date de fin">
                         <small id="end-help" class="form-text text-muted">Valeur par défaut : Non défini</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="end">Status :</label>
+                        <div class="form-check">
+                            <label class="form-check-label radio-inline" for="wait-status">
+                                <input class="form-check-input" type="radio" name="status" id="wait-status" value="not started" checked>
+                                    <span class="badge badge-danger">En attente</span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </input>
+                            </label>
+                            <label class="form-check-label radio-inline" for="progress-status">
+                                <input class="form-check-input" type="radio" name="status" id="progress-status" value="in progress">
+                                    <span class="badge badge-warning">En cours...</span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </input>
+                            </label>
+                            <label class="form-check-label radio-inline" for="done-status">
+                                <input class="form-check-input" type="radio" name="status" id="done-status" value="done">
+                                    <span class="badge badge-success">Terminée</span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </input>
+                            </label>
+                        </div>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Créer !</button>

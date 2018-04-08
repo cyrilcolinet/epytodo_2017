@@ -83,8 +83,9 @@ class UserController(object):
         name = request.form['name']
         status = request.form['status']
         description = request.form['description']
-        result = self.api.task_update(task_id, name, status, description)
-        flash(json.loads(result))
+        print(request.form)
+        ##result = self.api.task_update(task_id, name, status, description)
+        ##flash(json.loads(result))
         return redirect(url_for('route_user_all_task'))
 
     def create_task_action(self, request):
