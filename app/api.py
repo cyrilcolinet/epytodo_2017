@@ -114,10 +114,10 @@ class API(object):
             result = self.task.get_tasks_by_user_id(user_id)
             for i in range(0, len(result)):
                 if result[i][2] != None:
-                    time = datetime.datetime.strftime(result[i][2], "%A %d %b %Y, à %H:%S")
+                    time = datetime.datetime.strftime(result[i][2], "%A %d %b %Y, à %H:%M")
                     result[i][2] = time
                 if result[i][3] != None:
-                    time = datetime.datetime.strftime(result[i][3], "%A %d %b %Y, à %H:%S")
+                    time = datetime.datetime.strftime(result[i][3], "%A %d %b %Y, à %H:%M")
                     result[i][3] = time
             ret['result'] = result
         else:
