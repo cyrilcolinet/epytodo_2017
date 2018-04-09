@@ -104,7 +104,7 @@ class Task(object):
 
     def id_exist(self, id):
         try:
-            cur = self.conn.cursor(id)
+            cur = self.conn.cursor()
             cur.execute("SELECT COUNT(1) FROM %s WHERE task_id = '%d'"
                 % (self.table, id))
             exists = cur.fetchone()[0]
